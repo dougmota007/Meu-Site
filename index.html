@@ -1,204 +1,205 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Celeste Nova | Portal Musical Cósmico</title>
+    <title>QuantumHack v7.0 - Advanced Cyber Operations Suite</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;900&display=swap');
-        
-        :root {
-            --neon-purple: #c724ff;
-            --deep-blue: #05d9e8;
-            --cosmic-pink: #ff38a8;
-            --dark-space: #0d0221;
-            --star-yellow: #fff689;
+        @font-face {
+            font-family: 'Fira Code';
+            src: url('https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css');
         }
         
         body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #0d0221;
-            color: white;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-        
-        .neon-text {
-            text-shadow: 0 0 10px var(--neon-purple),
-                         0 0 20px var(--cosmic-pink),
-                         0 0 30px var(--deep-blue);
-        }
-        
-        .glitch-effect {
-            position: relative;
-        }
-        
-        .glitch-effect::before, .glitch-effect::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .glitch-effect::before {
-            left: 2px;
-            text-shadow: -2px 0 #00f7ff;
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim 5s infinite linear alternate-reverse;
-        }
-        
-        .glitch-effect::after {
-            left: -2px;
-            text-shadow: -2px 0 #ff00c1;
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim2 5s infinite linear alternate-reverse;
-        }
-        
-        @keyframes glitch-anim {
-            0% { clip: rect(31px, 9999px, 94px, 0); }
-            10% { clip: rect(112px, 9999px, 76px, 0); }
-            20% { clip: rect(85px, 9999px, 77px, 0); }
-            30% { clip: rect(27px, 9999px, 97px, 0); }
-            40% { clip: rect(64px, 9999px, 98px, 0); }
-            50% { clip: rect(61px, 9999px, 85px, 0); }
-            60% { clip: rect(99px, 9999px, 114px, 0); }
-            70% { clip: rect(34px, 9999px, 115px, 0); }
-            80% { clip: rect(98px, 9999px, 129px, 0); }
-            90% { clip: rect(43px, 9999px, 96px, 0); }
-            100% { clip: rect(82px, 9999px, 64px, 0); }
-        }
-        
-        @keyframes glitch-anim2 {
-            0% { clip: rect(65px, 9999px, 119px, 0); }
-            10% { clip: rect(66px, 9999px, 151px, 0); }
-            20% { clip: rect(33px, 9999px, 132px, 0); }
-            30% { clip: rect(93px, 9999px, 91px, 0); }
-            40% { clip: rect(147px, 9999px, 121px, 0); }
-            50% { clip: rect(70px, 9999px, 145px, 0); }
-            60% { clip: rect(120px, 9999px, 140px, 0); }
-            70% { clip: rect(107px, 9999px, 91px, 0); }
-            80% { clip: rect(139px, 9999px, 74px, 0); }
-            90% { clip: rect(68px, 9999px, 103px, 0); }
-            100% { clip: rect(14px, 9999px, 99px, 0); }
-        }
-        
-        .content-wrapper {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
+            font-family: 'Fira Code', monospace;
+            background-color: #0a0a0a;
+            color: #e0e0e0;
             overflow: hidden;
         }
         
-        .video-container iframe {
+        .panel {
+            background-color: rgba(15, 15, 15, 0.97);
+            border: 1px solid #252525;
+            box-shadow: 0 0 15px rgba(0, 150, 0, 0.15);
+        }
+        
+        .panel-header {
+            background: linear-gradient(to right, #151515, #202020);
+            border-bottom: 1px solid #303030;
+        }
+        
+        .terminal-text {
+            color: #00ffaa;
+            text-shadow: 0 0 5px rgba(0, 255, 170, 0.3);
+        }
+        
+        .cursor {
+            animation: blink 1s step-end infinite;
+        }
+        
+        @keyframes blink {
+            from, to { opacity: 1 }
+            50% { opacity: 0 }
+        }
+        
+        .node {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
+            width: 6px;
+            height: 6px;
+            background-color: rgba(0, 255, 170, 0.6);
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(0, 255, 170, 0.5);
         }
         
-        .cosmic-border {
-            border: 2px solid var(--neon-purple);
-            box-shadow: 0 0 10px var(--neon-purple),
-                      inset 0 0 10px var(--neon-purple);
+        .connection {
+            position: absolute;
+            background: linear-gradient(to right, rgba(0, 255, 170, 0.1), rgba(0, 255, 170, 0.3), rgba(0, 255, 170, 0.1));
+            transform-origin: left center;
         }
         
-        .cosmic-border:hover {
-            box-shadow: 0 0 20px var(--neon-purple),
-                      inset 0 0 20px var(--neon-purple);
-            transform: scale(1.02);
+        .progress-bar {
+            background: linear-gradient(to right, #0a0a0a, #00aa77, #0a0a0a);
+            background-size: 200% 100%;
+            animation: progress 3s linear infinite;
         }
         
-        .music-card {
-            transition: all 0.3s ease;
-            background: rgba(13, 2, 33, 0.7);
-            backdrop-filter: blur(10px);
+        @keyframes progress {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
         
-        .music-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(199, 36, 255, 0.5);
+        .hex-view {
+            background-color: rgba(0, 30, 20, 0.25);
+            font-size: 0.75em;
+            letter-spacing: 0.5px;
         }
         
-        .section-divider {
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--neon-purple), transparent);
-            margin: 50px 0;
-        }
-        
-        .scroll-indicator {
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-20px);}
-            60% {transform: translateY(-10px);}
-        }
-        
-        .social-icon {
-            transition: all 0.3s ease;
-        }
-        
-        .social-icon:hover {
-            transform: scale(1.2);
-            filter: drop-shadow(0 0 5px var(--neon-purple));
-        }
-        
-        .typewriter {
-            overflow: hidden;
-            border-right: 3px solid var(--neon-purple);
-            white-space: nowrap;
-            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-        }
-        
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-        
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: var(--neon-purple) }
-        }
-        
-        .nav-link {
+        .data-flow {
             position: relative;
+            overflow: hidden;
         }
         
-        .nav-link::after {
+        .data-flow::after {
             content: '';
             position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
+            top: 0;
             left: 0;
-            background-color: var(--neon-purple);
-            transition: width 0.3s ease;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(to bottom,
+                transparent 0%,
+                rgba(0, 255, 170, 0.05) 50%,
+                transparent 100%);
+            animation: data-flow 4s linear infinite;
         }
         
-        .nav-link:hover::after {
-            width: 100%;
+        @keyframes data-flow {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
         }
         
-        .floating {
-            animation: floating 3s ease-in-out infinite;
+        .critical {
+            color: #ff5555;
+            text-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
         }
         
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
+        .warning {
+            color: #ffff55;
+        }
+        
+        .success {
+            color: #55ff55;
+        }
+        
+        .info {
+            color: #5555ff;
+        }
+        
+        .highlight {
+            color: #00ffaa;
+        }
+        
+        .hex-addr {
+            color: #8888ff;
+        }
+        
+        .hex-data {
+            color: #55ffaa;
+        }
+        
+        .hex-asc {
+            color: #ff55ff;
+        }
+        
+        .transaction {
+            color: #55ffff;
+        }
+        
+        .password {
+            color: #ffaa55;
+        }
+        
+        .bank {
+            color: #55ff55;
+        }
+        
+        .crypto {
+            color: #ff55ff;
+        }
+        
+        .exploit {
+            color: #ff5555;
+        }
+        
+        .scan {
+            color: #5555ff;
+        }
+        
+        .status {
+            color: #00ffaa;
+        }
+        
+        .tooltip {
+            position: absolute;
+            background: rgba(10, 20, 15, 0.9);
+            border: 1px solid #00aa77;
+            padding: 5px;
+            font-size: 0.8em;
+            pointer-events: none;
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .grid-cell:hover .tooltip {
+            opacity: 1;
+        }
+        
+        .blink {
+            animation: blink-fast 0.5s step-end infinite;
+        }
+        
+        @keyframes blink-fast {
+            from, to { opacity: 1 }
+            50% { opacity: 0.5 }
+        }
+        
+        .unlock {
+            color: #55ffff;
+        }
+        
+        .receipt {
+            color: #ffaa55;
+        }
+        
+        .account {
+            color: #55ff55;
+        }
+        
+        .ai {
+            color: #ff55ff;
         }
         
         .pulse {
@@ -206,1037 +207,1260 @@
         }
         
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(199, 36, 255, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(199, 36, 255, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(199, 36, 255, 0); }
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
         }
         
-        /* Estilos para a galeria de músicas */
-        .gallery-container {
-            display: none;
-        }
-        
-        .gallery-active {
-            display: block;
-        }
-        
-        .music-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .gallery-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .back-button {
-            background: none;
-            border: none;
-            color: var(--neon-purple);
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-        }
-        
-        /* Estilos para as notas musicais */
-        .music-note {
-            position: absolute;
-            font-size: 1.5rem;
-            opacity: 0;
-            pointer-events: none;
-            z-index: 10;
-            animation: float-note 4s ease-in-out infinite;
-        }
-        
-        @keyframes float-note {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-        
-        .note-container {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .note-hover {
-            position: absolute;
-            font-size: 1.2rem;
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-        
-        .note-hover.active {
-            opacity: 1;
-            transform: translateY(-10px);
-        }
-        
-        /* Estilos para os gêneros musicais */
-        .genre-tag {
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            margin-right: 5px;
-            margin-bottom: 5px;
-        }
-        
-        .psychedelic {
-            background-color: rgba(199, 36, 255, 0.2);
-            border: 1px solid var(--neon-purple);
-        }
-        
-        .chillwave {
-            background-color: rgba(5, 217, 232, 0.2);
-            border: 1px solid var(--deep-blue);
-        }
-        
-        .electronic {
-            background-color: rgba(255, 56, 168, 0.2);
-            border: 1px solid var(--cosmic-pink);
-        }
-        
-        .sad {
-            background-color: rgba(255, 104, 137, 0.2);
-            border: 1px solid #ff6889;
-        }
-        
-        .rap {
-            background-color: rgba(137, 255, 104, 0.2);
-            border: 1px solid #89ff68;
-        }
-        
-        .dance {
-            background-color: rgba(255, 248, 137, 0.2);
-            border: 1px solid var(--star-yellow);
-        }
-        
-        /* Estilos para hashtags */
-        .hashtag {
-            display: inline-block;
-            color: var(--deep-blue);
-            margin-right: 5px;
-            font-size: 0.7rem;
-        }
-        
-        /* Efeito de partículas simplificado */
-        .particles {
+        .matrix-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
-        
-        .particle {
-            position: absolute;
-            background-color: var(--neon-purple);
-            border-radius: 50%;
-            pointer-events: none;
+            z-index: -1;
+            opacity: 0.05;
+            background-image: 
+                linear-gradient(rgba(0, 255, 170, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 170, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
     </style>
 </head>
-<body class="bg-gray-900 text-white">
-    <!-- Efeito de partículas simplificado -->
-    <div class="particles" id="particles"></div>
+<body>
+    <!-- Matrix Background -->
+    <div class="matrix-bg"></div>
     
-    <div class="content-wrapper">
-        <!-- Header -->
-        <header class="fixed w-full z-50 bg-black bg-opacity-70 backdrop-filter backdrop-blur-lg">
-            <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-                <div class="flex items-center space-x-2">
-                    <div class="glitch-effect text-2xl font-bold" data-text="CELESTE NOVA">
-                        <span class="neon-text">CELESTE NOVA</span>
-                    </div>
-                    <span class="text-xs bg-gradient-to-r from-purple-500 to-pink-500 text-transparent bg-clip-text">PORTAL MUSICAL CÓSMICO</span>
+    <!-- Main Grid Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-1 p-1 h-screen">
+        <!-- Left Column - System Dashboard -->
+        <div class="lg:col-span-1 flex flex-col gap-1">
+            <!-- System Status -->
+            <div class="panel p-2">
+                <div class="panel-header p-2 mb-2 flex justify-between items-center">
+                    <span class="font-bold">QUANTUM AI SYSTEM</span>
+                    <span class="text-xs">[<span id="sys-time">00:00:00</span>]</span>
                 </div>
-                
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-link text-white hover:text-purple-400 transition">Início</a>
-                    <a href="#about" class="nav-link text-white hover:text-purple-400 transition">Sobre</a>
-                    <a href="#music" class="nav-link text-white hover:text-purple-400 transition">Músicas</a>
-                    <a href="#videos" class="nav-link text-white hover:text-purple-400 transition">Vídeos</a>
-                    <a href="#contact" class="nav-link text-white hover:text-purple-400 transition">Contato</a>
-                </nav>
-                
-                <div class="flex items-center space-x-4">
-                    <a href="https://www.youtube.com/@speeddemonchanel" target="_blank" class="text-red-500 hover:text-red-400 transition">
-                        <i class="fab fa-youtube text-2xl"></i>
-                    </a>
-                    <button id="menu-toggle" class="md:hidden text-white focus:outline-none">
-                        <i class="fas fa-bars text-2xl"></i>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden bg-gray-900 bg-opacity-95 w-full py-4 px-4">
-                <div class="flex flex-col space-y-4">
-                    <a href="#home" class="text-white hover:text-purple-400 transition">Início</a>
-                    <a href="#about" class="text-white hover:text-purple-400 transition">Sobre</a>
-                    <a href="#music" class="text-white hover:text-purple-400 transition">Músicas</a>
-                    <a href="#videos" class="text-white hover:text-purple-400 transition">Vídeos</a>
-                    <a href="#contact" class="text-white hover:text-purple-400 transition">Contato</a>
-                </div>
-            </div>
-        </header>
-
-        <!-- Hero Section -->
-        <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
-            <div class="container mx-auto px-4 py-20 text-center z-10">
-                <h1 class="text-5xl md:text-7xl font-bold mb-6 neon-text">
-                    <span class="glitch-effect" data-text="CELESTE NOVA">CELESTE NOVA</span>
-                </h1>
-                <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto typewriter">
-                    Música cósmica que transcende dimensões e emoções
-                </p>
-                
-                <div class="flex justify-center space-x-4 mb-12">
-                    <a href="#music-gallery" class="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-bold hover:opacity-90 transition transform hover:scale-105">
-                        Explorar Músicas
-                    </a>
-                    <a href="https://www.youtube.com/@speeddemonchanel" target="_blank" class="px-8 py-3 border-2 border-purple-500 text-purple-400 rounded-full font-bold hover:bg-purple-900 hover:bg-opacity-30 transition transform hover:scale-105">
-                        <i class="fab fa-youtube mr-2"></i> YouTube
-                    </a>
-                </div>
-                
-                <div class="scroll-indicator text-center mt-16">
-                    <p class="mb-2 text-sm">Role para baixo</p>
-                    <i class="fas fa-chevron-down text-xl animate-bounce"></i>
-                </div>
-            </div>
-            
-            <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-gray-900 to-transparent z-10"></div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="py-20 relative">
-            <div class="container mx-auto px-4">
-                <div class="flex flex-col lg:flex-row items-center">
-                    <div class="lg:w-1/2 mb-12 lg:mb-0 lg:pr-12">
-                        <h2 class="text-4xl font-bold mb-6 neon-text">Sobre <span class="text-purple-400">Celeste Nova</span></h2>
-                        <p class="text-lg mb-6">
-                            Celeste Nova é uma artista musical que cria experiências sonoras cósmicas, combinando elementos de música psicodélica, chillwave e eletrônica. Suas composições transportam os ouvintes para jornadas intergalácticas através de paisagens sonoras etéreas.
-                        </p>
-                        <p class="text-lg mb-8">
-                            Com colaborações notáveis como Speed Demon e Magnorio, Celeste Nova explora temas de amor cósmico, viagens estelares e conexões interdimensionais, tudo envolto em batidas hipnóticas e melodias celestiais.
-                        </p>
-                        
-                        <div class="flex space-x-4">
-                            <div class="text-center">
-                                <div class="text-3xl font-bold text-purple-400">20+</div>
-                                <div class="text-sm">Músicas</div>
+                <div class="text-xs space-y-2">
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <div class="flex justify-between">
+                                <span>HOST:</span>
+                                <span class="highlight">quantum-ai-mainframe</span>
                             </div>
-                            <div class="text-center">
-                                <div class="text-3xl font-bold text-purple-400">1M+</div>
-                                <div class="text-sm">Visualizações</div>
+                            <div class="flex justify-between">
+                                <span>USER:</span>
+                                <span class="warning">root</span>
                             </div>
-                            <div class="text-center">
-                                <div class="text-3xl font-bold text-purple-400">2017</div>
-                                <div class="text-sm">Desde</div>
+                            <div class="flex justify-between">
+                                <span>SESSION:</span>
+                                <span class="status">#<span id="session-id">QH7F9A2C</span></span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between">
+                                <span>UPTIME:</span>
+                                <span><span id="uptime">00:00:00</span></span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>THREATS:</span>
+                                <span><span id="threat-level">0</span>/10</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>ENCRYPTION:</span>
+                                <span class="success">QUANTUM-AES-512</span>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="lg:w-1/2 relative">
-                        <div class="floating">
-                            <img src="https://images.unsplash.com/photo-1511671782772-c97d3e27ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                                  alt="Celeste Nova"
-                                  class="w-full rounded-lg cosmic-border transform rotate-3">
-                        </div>
-                        <div class="absolute -bottom-6 -right-6 bg-purple-900 p-4 rounded-lg cosmic-border w-1/2 z-10">
-                            <h3 class="font-bold mb-2">Projeto Atual</h3>
-                            <p class="text-sm">"Constelações do Coração" - Novo álbum em 2024</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Music Section -->
-        <section id="music" class="py-20 bg-gray-800 bg-opacity-50">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold mb-4 neon-text">Destaques <span class="text-purple-400">Musicais</span></h2>
-                    <p class="max-w-2xl mx-auto">As músicas mais transcendentais de Celeste Nova</p>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Music Card 1 -->
-                    <div class="music-card rounded-lg overflow-hidden cosmic-border p-6">
-                        <div class="video-container mb-4">
-                            <iframe src="https://www.youtube.com/embed/0K-F0umHm1I" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2 note-container">
-                            <span class="note-hover">♪</span>
-                            Caminho das Estrelas
-                        </h3>
-                        <p class="text-sm text-gray-400 mb-4">Uma sinfonia cósmica de luz e ritmo, revelando a essência da existência em cada acorde.</p>
-                        <div class="mb-4">
-                            <span class="genre-tag psychedelic">Psicodélico</span>
-                            <span class="genre-tag dance">Dance Pop</span>
-                            <span class="genre-tag electronic">Electro</span>
-                            <span class="genre-tag electronic">High-NRG</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <div class="flex space-x-2">
-                                <a href="https://www.youtube.com/watch?v=0K-F0umHm1I" target="_blank" class="text-red-400 hover:text-red-300">
-                                    <i class="fab fa-youtube"></i>
-                                </a>
-                            </div>
-                            <a href="https://www.youtube.com/watch?v=0K-F0umHm1I" target="_blank" class="px-4 py-2 bg-purple-600 rounded-full text-sm hover:bg-purple-700 transition">
-                                Ouvir
-                            </a>
-                        </div>
-                    </div>
+                    <div class="h-px bg-gray-700 my-1"></div>
                     
-                    <!-- Music Card 2 -->
-                    <div class="music-card rounded-lg overflow-hidden cosmic-border p-6">
-                        <div class="video-container mb-4">
-                            <iframe src="https://www.youtube.com/embed/uDZQ0BwbJy0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2 note-container">
-                            <span class="note-hover">♫</span>
-                            Labirinto da Realidade
-                        </h3>
-                        <p class="text-sm text-gray-400 mb-4">Uma jornada mental entre o real e o imaginário, onde tudo se desfaz em som e ilusão.</p>
-                        <div class="mb-4">
-                            <span class="genre-tag psychedelic">Psicodélico</span>
-                            <span class="genre-tag electronic">Electro</span>
-                            <span class="genre-tag electronic">Experimental</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <div class="flex space-x-2">
-                                <a href="https://www.youtube.com/watch?v=uDZQ0BwbJy0" target="_blank" class="text-red-400 hover:text-red-300">
-                                    <i class="fab fa-youtube"></i>
-                                </a>
-                            </div>
-                            <a href="https://www.youtube.com/watch?v=uDZQ0BwbJy0" target="_blank" class="px-4 py-2 bg-purple-600 rounded-full text-sm hover:bg-purple-700 transition">
-                                Ouvir
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- Music Card 3 -->
-                    <div class="music-card rounded-lg overflow-hidden cosmic-border p-6">
-                        <div class="video-container mb-4">
-                            <iframe src="https://www.youtube.com/embed/FmKsKpwQ1Hg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2 note-container">
-                            <span class="note-hover">♪</span>
-                            Mundos Entre Estrelas
-                        </h3>
-                        <p class="text-sm text-gray-400 mb-4">Uma travessia psicodélica por planetas e civilizações ocultas entre galáxias.</p>
-                        <div class="mb-4">
-                            <span class="genre-tag psychedelic">Psytrance</span>
-                            <span class="genre-tag electronic">Ambient</span>
-                            <span class="genre-tag electronic">Electronic</span>
-                            <span class="genre-tag chillwave">Chillwave</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <div class="flex space-x-2">
-                                <a href="https://www.youtube.com/watch?v=FmKsKpwQ1Hg" target="_blank" class="text-red-400 hover:text-red-300">
-                                    <i class="fab fa-youtube"></i>
-                                </a>
-                            </div>
-                            <a href="https://www.youtube.com/watch?v=FmKsKpwQ1Hg" target="_blank" class="px-4 py-2 bg-purple-600 rounded-full text-sm hover:bg-purple-700 transition">
-                                Ouvir
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="text-center mt-12">
-                    <button id="show-gallery" class="inline-block px-8 py-3 border-2 border-purple-500 text-purple-400 rounded-full font-bold hover:bg-purple-900 hover:bg-opacity-30 transition transform hover:scale-105">
-                        Ver Todas as Músicas <i class="fas fa-arrow-right ml-2"></i>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Music Gallery (hidden by default) -->
-        <section id="music-gallery" class="gallery-container py-20 bg-gray-900">
-            <div class="container mx-auto px-4">
-                <div class="gallery-header">
-                    <button id="back-to-music" class="back-button">
-                        <i class="fas fa-arrow-left mr-2"></i> Voltar para Destaques
-                    </button>
-                    <h2 class="text-4xl font-bold neon-text">Discografia <span class="text-purple-400">Completa</span></h2>
-                    <div></div> <!-- Empty div for alignment -->
-                </div>
-                
-                <div class="music-gallery">
-                    <!-- Todas as músicas serão adicionadas aqui pelo JavaScript -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Video Section -->
-        <section id="videos" class="py-20">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold mb-4 neon-text">Vídeos <span class="text-purple-400">Musicais</span></h2>
-                    <p class="max-w-2xl mx-auto">Visualizações hipnóticas para acompanhar as jornadas cósmicas</p>
-                </div>
-                
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-                    <div class="video-container cosmic-border rounded-lg overflow-hidden">
-                        <iframe src="https://www.youtube.com/embed/E-0jw90eenk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
                     <div>
-                        <h3 class="text-2xl font-bold mb-4 note-container">
-                            <span class="note-hover">♫</span>
-                            Pulsar de Estrela
-                        </h3>
-                        <p class="mb-6">
-                            A belleza dos pulsares traduzida em batidas suaves e atmosferas de outro mundo. Uma experiência audiovisual que transporta você para os confins do universo.
-                        </p>
-                        <div class="mb-4">
-                            <span class="genre-tag psychedelic">Psicodélico</span>
-                            <span class="genre-tag chillwave">Chillwave</span>
+                        <div class="flex justify-between">
+                            <span>AI LOAD:</span>
+                            <span><span id="cpu-load">0</span>%</span>
                         </div>
-                        <div class="flex space-x-4">
-                            <a href="https://www.youtube.com/watch?v=E-0jw90eenk" target="_blank" class="px-6 py-2 bg-red-600 rounded-full hover:bg-red-700 transition">
-                                <i class="fab fa-youtube mr-2"></i> Assistir
-                            </a>
-                            <a href="https://www.youtube.com/watch?v=E-0jw90eenk" target="_blank" class="px-6 py-2 bg-blue-600 rounded-full hover:bg-blue-700 transition">
-                                <i class="fas fa-share mr-2"></i> Compartilhar
-                            </a>
+                        <div class="w-full bg-black h-2 mt-1">
+                            <div id="cpu-bar" class="h-full progress-bar" style="width: 0%"></div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="video-thumbnail">
-                        <div class="video-container cosmic-border rounded-lg overflow-hidden">
-                            <iframe src="https://www.youtube.com/embed/QEMCDPu2h1E" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    
+                    <div>
+                        <div class="flex justify-between">
+                            <span>MEMORY:</span>
+                            <span><span id="mem-usage">0</span>/<span id="mem-total">128</span>GB</span>
                         </div>
-                        <h4 class="mt-3 font-bold note-container">
-                            <span class="note-hover">♪</span>
-                            Jornada Estelar
-                        </h4>
-                        <div class="mb-2">
-                            <span class="genre-tag psychedelic">Psicodélico</span>
-                            <span class="genre-tag chillwave">Chillwave</span>
+                        <div class="w-full bg-black h-2 mt-1">
+                            <div id="mem-bar" class="h-full progress-bar" style="width: 0%"></div>
                         </div>
                     </div>
-                    <div class="video-thumbnail">
-                        <div class="video-container cosmic-border rounded-lg overflow-hidden">
-                            <iframe src="https://www.youtube.com/embed/JF6hSD5x8nQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    
+                    <div>
+                        <div class="flex justify-between">
+                            <span>NETWORK:</span>
+                            <span><span id="net-speed">0</span> Gbps</span>
                         </div>
-                        <h4 class="mt-3 font-bold note-container">
-                            <span class="note-hover">♫</span>
-                            Coração Cósmico
-                        </h4>
-                        <div class="mb-2">
-                            <span class="genre-tag psychedelic">Psychedelic</span>
-                            <span class="genre-tag electronic">Electronic</span>
-                            <span class="genre-tag chillwave">Chillwave</span>
+                        <div class="w-full bg-black h-2 mt-1">
+                            <div id="net-bar" class="h-full progress-bar" style="width: 0%"></div>
                         </div>
                     </div>
-                    <div class="video-thumbnail">
-                        <div class="video-container cosmic-border rounded-lg overflow-hidden">
-                            <iframe src="https://www.youtube.com/embed/r_a44HX76zc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    
+                    <div>
+                        <div class="flex justify-between">
+                            <span>ACTIVE OPS:</span>
+                            <span><span id="active-ops">0</span>/500</span>
                         </div>
-                        <h4 class="mt-3 font-bold note-container">
-                            <span class="note-hover">♪</span>
-                            O Véu das Estrelas
-                        </h4>
-                        <div class="mb-2">
-                            <span class="genre-tag psychedelic">Psychedelic</span>
-                            <span class="genre-tag chillwave">Chillwave</span>
-                            <span class="genre-tag rap">Rap/Trap</span>
+                        <div class="w-full bg-black h-2 mt-1">
+                            <div id="ops-bar" class="h-full progress-bar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between">
+                            <span>AI CORES:</span>
+                            <span><span id="ai-cores">256</span></span>
+                        </div>
+                        <div class="w-full bg-black h-2 mt-1">
+                            <div id="ai-bar" class="h-full progress-bar" style="width: 100%"></div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-20 bg-gray-800 bg-opacity-50">
-            <div class="container mx-auto px-4">
-                <div class="max-w-4xl mx-auto">
-                    <div class="text-center mb-16">
-                        <h2 class="text-4xl font-bold mb-4 neon-text">Entre em <span class="text-purple-400">Contato</span></h2>
-                        <p class="max-w-2xl mx-auto">Para colaborações ou apenas para compartilhar sua experiência musical</p>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                        <div>
-                            <h3 class="text-2xl font-bold mb-6">Informações de Contato</h3>
-                            
-                            <div class="mb-6 flex items-start">
-                                <div class="bg-purple-900 p-3 rounded-full mr-4">
-                                    <i class="fas fa-envelope text-purple-300"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold">Email</h4>
-                                    <p>contato@celestenova.com</p>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-6 flex items-start">
-                                <div class="bg-purple-900 p-3 rounded-full mr-4">
-                                    <i class="fas fa-music text-purple-300"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold">Produção Musical</h4>
-                                    <p>producao@celestenova.com</p>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-6 flex items-start">
-                                <div class="bg-purple-900 p-3 rounded-full mr-4">
-                                    <i class="fas fa-share-alt text-purple-300"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold">Redes Sociais</h4>
-                                    <div class="flex space-x-4 mt-2">
-                                        <a href="#" class="social-icon text-purple-400 hover:text-purple-300">
-                                            <i class="fab fa-instagram text-xl"></i>
-                                        </a>
-                                        <a href="#" class="social-icon text-blue-400 hover:text-blue-300">
-                                            <i class="fab fa-facebook text-xl"></i>
-                                        </a>
-                                        <a href="https://www.youtube.com/@speeddemonchanel" target="_blank" class="social-icon text-red-400 hover:text-red-300">
-                                            <i class="fab fa-youtube text-xl"></i>
-                                        </a>
-                                        <a href="#" class="social-icon text-pink-400 hover:text-pink-300">
-                                            <i class="fab fa-tiktok text-xl"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <form class="space-y-6">
-                                <div>
-                                    <label for="name" class="block mb-2">Seu Nome</label>
-                                    <input type="text" id="name" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
-                                </div>
-                                
-                                <div>
-                                    <label for="email" class="block mb-2">Email</label>
-                                    <input type="email" id="email" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
-                                </div>
-                                
-                                <div>
-                                    <label for="subject" class="block mb-2">Assunto</label>
-                                    <input type="text" id="subject" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
-                                </div>
-                                
-                                <div>
-                                    <label for="message" class="block mb-2">Mensagem</label>
-                                    <textarea id="message" rows="4" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
-                                </div>
-                                
-                                <button type="submit" class="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-bold hover:opacity-90 transition">
-                                    Enviar Mensagem
-                                </button>
-                            </form>
-                        </div>
-                    </div>
+            
+            <!-- Quick Actions -->
+            <div class="panel p-2">
+                <div class="panel-header p-2 mb-2">
+                    <span class="font-bold">AI COMMANDS</span>
+                </div>
+                <div class="grid grid-cols-3 gap-1 text-xs">
+                    <button class="p-1 bg-gray-800 hover:bg-gray-700" onclick="executeAutoSequence()">AUTO SEQ</button>
+                    <button class="p-1 bg-gray-800 hover:bg-gray-700" onclick="stopAllOperations()">STOP ALL</button>
+                    <button class="p-1 bg-gray-800 hover:bg-gray-700" onclick="randomizeOperations()">RANDOMIZE</button>
+                    <button class="p-1 bg-red-900 hover:bg-red-800" onclick="executeMassBankHack()">MASS BANK</button>
+                    <button class="p-1 bg-purple-900 hover:bg-purple-800" onclick="executeCryptoSteal()">CRYPTO</button>
+                    <button class="p-1 bg-blue-900 hover:bg-blue-800" onclick="executePasswordCrack()">PASS CRACK</button>
+                    <button class="p-1 bg-green-900 hover:bg-green-800" onclick="executeAccountUnlock()">UNLOCK</button>
+                    <button class="p-1 bg-yellow-900 hover:bg-yellow-800" onclick="generateReceipts()">RECEIPTS</button>
+                    <button class="p-1 bg-pink-900 hover:bg-pink-800" onclick="executeAIAssault()">AI ASSAULT</button>
                 </div>
             </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="py-12 bg-black bg-opacity-70">
-            <div class="container mx-auto px-4">
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <div class="mb-6 md:mb-0">
-                        <div class="glitch-effect text-2xl font-bold" data-text="CELESTE NOVA">
-                            <span class="neon-text">CELESTE NOVA</span>
-                        </div>
-                        <p class="text-sm mt-2">Música que transcende dimensões</p>
-                    </div>
-                    
-                    <div class="flex space-x-6 mb-6 md:mb-0">
-                        <a href="#" class="social-icon text-purple-400 hover:text-purple-300">
-                            <i class="fab fa-spotify text-xl"></i>
-                        </a>
-                        <a href="https://www.youtube.com/@speeddemonchanel" target="_blank" class="social-icon text-red-400 hover:text-red-300">
-                            <i class="fab fa-youtube text-xl"></i>
-                        </a>
-                        <a href="#" class="social-icon text-blue-400 hover:text-blue-300">
-                            <i class="fab fa-soundcloud text-xl"></i>
-                        </a>
-                        <a href="#" class="social-icon text-pink-400 hover:text-pink-300">
-                            <i class="fab fa-instagram text-xl"></i>
-                        </a>
-                    </div>
-                    
-                    <div class="text-center md:text-right">
-                        <p class="text-sm">&copy; 2023 Celeste Nova. Todos os direitos reservados.</p>
-                        <p class="text-xs mt-1 text-gray-500">Desenvolvido com <i class="fas fa-heart text-red-500"></i> para amantes de música cósmica</p>
-                    </div>
+            
+            <!-- Active Operations -->
+            <div class="panel p-2 flex-1 overflow-hidden">
+                <div class="panel-header p-2 mb-2">
+                    <span class="font-bold">AI OPERATIONS (<span id="ops-count">0</span>)</span>
+                </div>
+                <div class="text-xs h-full overflow-y-auto data-flow" id="operations-list">
+                    <!-- Operations will be added here -->
                 </div>
             </div>
-        </footer>
+        </div>
+        
+        <!-- Main Column - Operations Dashboard -->
+        <div class="lg:col-span-3 flex flex-col gap-1">
+            <!-- Main Terminal -->
+            <div class="panel p-2 flex-1 flex flex-col">
+                <div class="panel-header p-2 mb-2 flex justify-between items-center">
+                    <span class="font-bold">QUANTUM AI TERMINAL</span>
+                    <span class="text-xs">[<span id="terminal-mode">AUTO-EXEC</span>]</span>
+                </div>
+                <div class="flex-1 overflow-y-auto text-xs mb-2 font-mono" id="terminal-output">
+                    <!-- Terminal output will be added here -->
+                </div>
+                <div class="border-t border-gray-700 pt-1 flex items-center">
+                    <span class="mr-2">root@quantum-ai:~#</span>
+                    <span id="terminal-input" class="terminal-text flex-1 cursor">_</span>
+                </div>
+            </div>
+            
+            <!-- Operations Grid -->
+            <div class="panel p-2">
+                <div class="panel-header p-2 mb-2 flex justify-between items-center">
+                    <span class="font-bold">AI OPERATIONS MATRIX (<span id="matrix-count">0</span>/500 ACTIVE)</span>
+                    <span class="text-xs">[<span id="matrix-status">SYNCED</span>]</span>
+                </div>
+                <div class="grid grid-cols-10 gap-1 text-xxs" id="operations-grid">
+                    <!-- 500 operation cells will be added here -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Column - Data Viewers -->
+        <div class="lg:col-span-1 flex flex-col gap-1">
+            <!-- Financial Transactions -->
+            <div class="panel p-2 flex-1 overflow-hidden">
+                <div class="panel-header p-2 mb-2">
+                    <span class="font-bold">FINANCIAL TRANSACTIONS</span>
+                </div>
+                <div class="text-xs h-full overflow-y-auto data-flow" id="transactions-list">
+                    <!-- Transactions will be added here -->
+                </div>
+            </div>
+            
+            <!-- Account Unlocks -->
+            <div class="panel p-2 flex-1 overflow-hidden">
+                <div class="panel-header p-2 mb-2">
+                    <span class="font-bold">ACCOUNT UNLOCKS</span>
+                </div>
+                <div class="text-xs h-full overflow-y-auto data-flow" id="unlocks-list">
+                    <!-- Unlocks will be added here -->
+                </div>
+            </div>
+            
+            <!-- Receipts -->
+            <div class="panel p-2 h-1/3 overflow-hidden">
+                <div class="panel-header p-2 mb-2">
+                    <span class="font-bold">PIX RECEIPTS</span>
+                </div>
+                <div class="text-xs h-full overflow-y-auto data-flow" id="receipts-list">
+                    <!-- Receipts will be added here -->
+                </div>
+            </div>
+        </div>
     </div>
+    
+    <!-- Network Visualization (Background) -->
+    <div id="network-visualization" class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <!-- Network nodes and connections will be added here -->
+    </div>
+    
+    <!-- Tooltip Element -->
+    <div id="tooltip" class="tooltip"></div>
+    
+    <!-- AI Core Visualization -->
+    <div id="ai-visualization" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
 
     <script>
-        // Mobile menu toggle
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
-        
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('mobile-menu').classList.add('hidden');
-            });
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Add active class to nav links on scroll
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('header nav a');
-        
-        window.addEventListener('scroll', () => {
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                if (pageYOffset >= (sectionTop - 100)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('text-purple-400');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('text-purple-400');
-                }
-            });
-        });
-        
-        // Gallery functionality
-        const showGalleryBtn = document.getElementById('show-gallery');
-        const backToMusicBtn = document.getElementById('back-to-music');
-        const musicGallery = document.getElementById('music-gallery');
-        const galleryContainer = document.querySelector('.music-gallery');
-        
-        // Lista de músicas com os links do YouTube que você forneceu
-        const musicList = [
-            { 
-                title: "Caminho das Estrelas", 
-                artist: "Celeste Nova",
-                url: "0K-F0umHm1I", 
-                description: "Uma sinfonia cósmica de luz e ritmo, revelando a essência da existência em cada acorde.",
-                genres: ["Psicodélico", "Dance Pop", "Electro", "High-NRG"],
-                hashtags: ["#CaminhoDasEstrelas", "#CelesteNova", "#MúsicaPsicodélica", "#DancePop", "#Electro", "#HighNRG", "#SinfoniaEstelar"],
-                year: "2023"
-            },
-            { 
-                title: "Labirinto da Realidade", 
-                artist: "Celeste Nova",
-                url: "uDZQ0BwbJy0", 
-                description: "Uma jornada mental entre o real e o imaginário, onde tudo se desfaz em som e ilusão.",
-                genres: ["Psicodélico", "Electro", "Experimental"],
-                hashtags: ["#LabirintoDaRealidade", "#CelesteNova", "#Experimental", "#Distorção", "#ExploraçãoMental"],
-                year: "2023"
-            },
-            { 
-                title: "Mundos Entre Estrelas", 
-                artist: "Celeste Nova",
-                url: "FmKsKpwQ1Hg", 
-                description: "Uma travessia psicodélica por planetas e civilizações ocultas entre galáxias.",
-                genres: ["Psytrance", "Ambient", "Electronic", "Chillwave"],
-                hashtags: ["#MundosEntreEstrelas", "#ChillwaveBeats", "#ExploraçãoGaláctica"],
-                year: "2023"
-            },
-            { 
-                title: "Pulsar de Estrela", 
-                artist: "Celeste Nova",
-                url: "E-0jw90eenk", 
-                description: "A belleza dos pulsares traduzida em batidas suaves e atmosferas de outro mundo.",
-                genres: ["Psicodélico", "Chillwave"],
-                hashtags: ["#PulsarDeEstrela", "#SomÉtereo", "#ExploraçãoEspacial"],
-                year: "2023"
-            },
-            { 
-                title: "Jornada Estelar", 
-                artist: "Celeste Nova",
-                url: "QEMCDPu2h1E", 
-                description: "A saga de uma viajante galáctica até a Terra, contada em som e sentimento.",
-                genres: ["Psicodélico", "Chillwave"],
-                hashtags: ["#JornadaEstelar", "#ViajanteDoEspaço", "#NovaJornada"],
-                year: "2023"
-            },
-            { 
-                title: "Coração Cósmico", 
-                artist: "Celeste Nova",
-                url: "JF6hSD5x8nQ", 
-                description: "Amor e paixão intergaláctica com batidas que dançam entre buracos negros e nebulosas.",
-                genres: ["Psychedelic", "Electronic", "Chillwave"],
-                hashtags: ["#CoraçãoCósmico", "#InterstellarLove", "#CosmicHeart"],
-                year: "2023"
-            },
-            { 
-                title: "O Véu das Estrelas", 
-                artist: "Celeste Nova ft Speed Demon",
-                url: "r_a44HX76zc", 
-                description: "Um dueto cósmico que funde amor, psicodelia e rimas afiadas sob um véu estelar.",
-                genres: ["Psychedelic", "Chillwave", "Rap/Trap"],
-                hashtags: ["#OVeuDasEstrelas", "#AmorCosmico", "#RapTrap"],
-                year: "2023"
-            },
-            { 
-                title: "Constelação do Destino", 
-                artist: "Celeste Nova ft Speed Demon",
-                url: "_voWg-Pljsc", 
-                description: "Um encontro entre destino e paixão, nas galáxias do amor.",
-                genres: ["Psicodélico", "Chillwave", "Rap/Trap"],
-                hashtags: ["#ConstelaçãoDoDestino", "#DuetoEterno", "#AmorNasEstrelas"],
-                year: "2023"
-            },
-            { 
-                title: "Voz Além das Estrelas", 
-                artist: "Celeste Nova",
-                url: "_0FD22KixFY", 
-                description: "Uma canção de saudade que ecoa entre estrelas, tentando alcançar Speed Demon.",
-                genres: ["Psicodélico", "Chillwave"],
-                hashtags: ["#VozAlémDasEstrelas", "#Esperança", "#Retorno"],
-                year: "2023"
-            },
-            { 
-                title: "Vazio", 
-                artist: "Magnorio",
-                url: "2MW1MA5Fc9s", 
-                description: "A belleza do silêncio e a paz encontrada na introspecção profunda.",
-                genres: ["Acústico", "Sad"],
-                hashtags: ["#Vazio", "#Reflexão", "#PazInterior"],
-                year: "2023"
-            },
-            { 
-                title: "Vento Frio em Corações Quentes", 
-                artist: "Magnorio ft Celeste Nova",
-                url: "hZO2M6GKUTs", 
-                description: "Uma colisão entre dor e esperança, embalada por vozes sinceras e calorosas.",
-                genres: ["Sad", "Acústico"],
-                hashtags: ["#VentoFrio", "#Solidão", "#BellezaNaDor"],
-                year: "2023"
-            },
-            { 
-                title: "Cold Wind in Warm Hearts", 
-                artist: "Magnorio ft Celeste Nova",
-                url: "t9lFs0-C3ZQ", 
-                description: "A luta emocional entre o isolamento e a luz do amor, mesmo nas noites geladas.",
-                genres: ["Acoustic", "Sad"],
-                hashtags: ["#ColdWind", "#Emotional", "#LoveInSadness"],
-                year: "2023"
-            },
-            { 
-                title: "Páginas de um Livro Antigo", 
-                artist: "Magnorio ft Celeste Nova",
-                url: "25amt9BH7k4", 
-                description: "Uma viagem nostálgica pelas memórias da infância em forma de poesia sonora.",
-                genres: ["Acústico", "Sad"],
-                hashtags: ["#PáginasAntigas", "#Nostalgia", "#Memórias"],
-                year: "2023"
-            },
-            { 
-                title: "Voo Alto", 
-                artist: "Speed Demon",
-                url: "Mtl4-IsUle8", 
-                description: "Liberdade e superação com rimas que desafiam a gravidade.",
-                genres: ["Rap", "Trap", "Hip-Hop"],
-                hashtags: ["#VooAlto", "#RapConsciente", "#ForçaInterior"],
-                year: "2023"
-            },
-            { 
-                title: "Mente Indomável", 
-                artist: "Speed Demon",
-                url: "3vz2lAYXKrE", 
-                description: "Um hino de resistência mental e expressão criativa pura.",
-                genres: ["Rap", "Trap", "Hip-Hop"],
-                hashtags: ["#MenteIndomável", "#Criatividade", "#TrapVibes"],
-                year: "2023"
-            },
-            { 
-                title: "Horizontes Ocultos", 
-                artist: "Celeste Nova",
-                url: "q1IdKWozX6c", 
-                description: "Mergulhe no invisível e descubra a vastidão de si mesmo e do universo.",
-                genres: ["Psicodélico", "Chillwave", "Eletrônico"],
-                hashtags: ["#HorizontesOcultos", "#FogoERaiz", "#Descoberta"],
-                year: "2023"
-            },
-            { 
-                title: "No Coração da Nebulosa", 
-                artist: "Celeste Nova",
-                url: "Hhzuj_is3lc", 
-                description: "Uma viagem meditativa entre gases estelares e emoções profundas.",
-                genres: ["Ambient Psychedelic", "Chillwave", "Ethereal", "Electronic"],
-                hashtags: ["#Nebulosa", "#ViagemEstelar", "#CelesteNova"],
-                year: "2023"
-            }
+        // System Configuration
+        const OPERATION_TYPES = [
+            { name: "BANK_TRANSFER", color: "bank", icon: "fa-money-bill-transfer" },
+            { name: "CRYPTO_TRANSFER", color: "crypto", icon: "fa-bitcoin-sign" },
+            { name: "PASSWORD_CRACK", color: "password", icon: "fa-key" },
+            { name: "EXPLOIT_EXEC", color: "exploit", icon: "fa-bug" },
+            { name: "NETWORK_SCAN", color: "scan", icon: "fa-network-wired" },
+            { name: "DATA_EXFIL", color: "info", icon: "fa-file-export" },
+            { name: "LOG_CLEANUP", color: "warning", icon: "fa-broom" },
+            { name: "BACKDOOR_INSTALL", color: "critical", icon: "fa-door-open" },
+            { name: "PRIVILEGE_ESCALATE", color: "exploit", icon: "fa-user-shield" },
+            { name: "SURVEILLANCE", color: "scan", icon: "fa-eye" },
+            { name: "ACCOUNT_UNLOCK", color: "unlock", icon: "fa-unlock" },
+            { name: "RECEIPT_GEN", color: "receipt", icon: "fa-receipt" },
+            { name: "AI_ASSAULT", color: "ai", icon: "fa-robot" },
+            { name: "DEEP_SCAN", color: "scan", icon: "fa-radar" },
+            { name: "SOCIAL_ENG", color: "info", icon: "fa-user-ninja" }
         ];
-        
-        // Função para criar os cards da galeria
-        function createGalleryCards() {
-            galleryContainer.innerHTML = '';
+
+        const BANK_NAMES = [
+            "Bank of America", "Chase", "Wells Fargo", "HSBC", "Barclays", 
+            "Santander", "Citibank", "Deutsche Bank", "BNP Paribas", "UBS",
+            "Banco do Brasil", "Caixa Econômica", "Itaú", "Bradesco", "Santander BR",
+            "Nubank", "Inter", "BTG Pactual", "Safra", "Banrisul"
+        ];
+
+        const CRYPTO_TYPES = [
+            "Bitcoin", "Ethereum", "Ripple", "Litecoin", "Monero", 
+            "Cardano", "Polkadot", "Solana", "Avalanche", "Tether",
+            "Dogecoin", "Shiba Inu", "Polygon", "Chainlink", "Uniswap"
+        ];
+
+        const ACCOUNT_TYPES = [
+            "Bank Account", "Email", "Social Media", "Crypto Wallet", "Government",
+            "Corporate", "Cloud Storage", "VPN", "Gaming", "E-commerce"
+        ];
+
+        const COUNTRIES = [
+            "USA", "Brazil", "UK", "Germany", "France", 
+            "Japan", "China", "Russia", "India", "Canada",
+            "Australia", "Mexico", "Italy", "Spain", "Portugal"
+        ];
+
+        // System State
+        let systemStartTime = new Date();
+        let activeOperations = [];
+        let terminalHistory = [];
+        let transactions = [];
+        let crackedPasswords = [];
+        let accountUnlocks = [];
+        let receipts = [];
+        let memoryData = [];
+        let autoModeInterval;
+        let threatLevel = 0;
+        let aiCoresActive = 256;
+
+        // DOM Elements
+        const terminalOutput = document.getElementById('terminal-output');
+        const terminalInput = document.getElementById('terminal-input');
+        const operationsList = document.getElementById('operations-list');
+        const operationsGrid = document.getElementById('operations-grid');
+        const transactionsList = document.getElementById('transactions-list');
+        const unlocksList = document.getElementById('unlocks-list');
+        const receiptsList = document.getElementById('receipts-list');
+        const memoryViewer = document.getElementById('memory-viewer');
+        const sysTimeEl = document.getElementById('sys-time');
+        const sessionIdEl = document.getElementById('session-id');
+        const uptimeEl = document.getElementById('uptime');
+        const cpuLoadEl = document.getElementById('cpu-load');
+        const cpuBarEl = document.getElementById('cpu-bar');
+        const memUsageEl = document.getElementById('mem-usage');
+        const memTotalEl = document.getElementById('mem-total');
+        const memBarEl = document.getElementById('mem-bar');
+        const netSpeedEl = document.getElementById('net-speed');
+        const netBarEl = document.getElementById('net-bar');
+        const opsCountEl = document.getElementById('ops-count');
+        const matrixCountEl = document.getElementById('matrix-count');
+        const opsBarEl = document.getElementById('ops-bar');
+        const activeOpsEl = document.getElementById('active-ops');
+        const threatLevelEl = document.getElementById('threat-level');
+        const networkVisualization = document.getElementById('network-visualization');
+        const aiVisualization = document.getElementById('ai-visualization');
+        const tooltip = document.getElementById('tooltip');
+
+        // Initialize system
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set session ID
+            sessionIdEl.textContent = generateSessionId();
             
-            musicList.forEach(music => {
-                const card = document.createElement('div');
-                card.className = 'music-card rounded-lg overflow-hidden cosmic-border p-6';
-                
-                // Criar tags de gênero
-                const genreTags = music.genres.map(genre => {
-                    let genreClass = '';
-                    if (genre.toLowerCase().includes('psych') || genre.toLowerCase().includes('psicodélic')) {
-                        genreClass = 'psychedelic';
-                    } else if (genre.toLowerCase().includes('chill')) {
-                        genreClass = 'chillwave';
-                    } else if (genre.toLowerCase().includes('electronic') || genre.toLowerCase().includes('electro') || genre.toLowerCase().includes('eletrônic')) {
-                        genreClass = 'electronic';
-                    } else if (genre.toLowerCase().includes('sad') || genre.toLowerCase().includes('acoustic') || genre.toLowerCase().includes('acústic')) {
-                        genreClass = 'sad';
-                    } else if (genre.toLowerCase().includes('rap') || genre.toLowerCase().includes('hip-hop') || genre.toLowerCase().includes('trap')) {
-                        genreClass = 'rap';
-                    } else if (genre.toLowerCase().includes('dance')) {
-                        genreClass = 'dance';
-                    }
-                    
-                    return `<span class="genre-tag ${genreClass}">${genre}</span>`;
-                }).join('');
-                
-                // Criar hashtags
-                const hashtags = music.hashtags.map(tag => 
-                    `<span class="hashtag">${tag}</span>`
-                ).join('');
-                
-                card.innerHTML = `
-                    <div class="video-container mb-4">
-                        <iframe src="https://www.youtube.com/embed/${music.url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 note-container">
-                        <span class="note-hover">${Math.random() > 0.5 ? '♪' : '♫'}</span>
-                        ${music.title}
-                    </h3>
-                    <p class="text-sm text-gray-400 mb-2">${music.artist}</p>
-                    <p class="text-sm text-gray-400 mb-4">${music.description}</p>
-                    <div class="mb-4">
-                        ${genreTags}
-                    </div>
-                    <div class="mb-4 text-xs">
-                        ${hashtags}
-                    </div>
-                    <p class="text-xs text-gray-500 mb-4">Lançamento: ${music.year}</p>
-                    <div class="flex justify-between items-center">
-                        <div class="flex space-x-2">
-                            <a href="https://www.youtube.com/watch?v=${music.url}" target="_blank" class="text-red-400 hover:text-red-300">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                        </div>
-                        <a href="https://www.youtube.com/watch?v=${music.url}" target="_blank" class="px-4 py-2 bg-purple-600 rounded-full text-sm hover:bg-purple-700 transition">
-                            Ouvir
-                        </a>
-                    </div>
-                `;
-                
-                galleryContainer.appendChild(card);
-            });
+            // Initialize clock
+            updateClock();
+            setInterval(updateClock, 1000);
             
-            // Inicializar as notas musicais após criar os cards
-            initMusicNotes();
-        }
-        
-        // Mostrar galeria
-        showGalleryBtn.addEventListener('click', () => {
-            createGalleryCards();
-            document.getElementById('music').classList.add('hidden');
-            musicGallery.classList.add('gallery-active');
-            window.scrollTo({
-                top: musicGallery.offsetTop - 80,
-                behavior: 'smooth'
-            });
+            // Initialize uptime
+            updateUptime();
+            setInterval(updateUptime, 1000);
+            
+            // Initialize system monitors
+            updateSystemStats();
+            setInterval(updateSystemStats, 2000);
+            
+            // Initialize terminal
+            initializeTerminal();
+            
+            // Initialize operations grid (500 cells)
+            initializeOperationsGrid();
+            
+            // Initialize memory viewer
+            initializeMemoryViewer();
+            
+            // Initialize network visualization
+            initializeNetworkVisualization();
+            
+            // Initialize AI visualization
+            initializeAIVisualization();
+            
+            // Start auto mode
+            startAutoMode();
+            
+            // Initialize tooltips
+            initializeTooltips();
         });
-        
-        // Voltar para a seção de músicas
-        backToMusicBtn.addEventListener('click', () => {
-            document.getElementById('music').classList.remove('hidden');
-            musicGallery.classList.remove('gallery-active');
-            window.scrollTo({
-                top: document.getElementById('music').offsetTop - 80,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Função para criar notas musicais flutuantes
-        function createMusicNote() {
-            const note = document.createElement('div');
-            note.className = 'music-note';
-            note.innerHTML = Math.random() > 0.5 ? '♪' : '♫';
-            
-            // Posição aleatória na tela
-            const left = Math.random() * 100;
-            const top = Math.random() * 100;
-            
-            note.style.left = `${left}%`;
-            note.style.top = `${top}%`;
-            
-            // Atraso aleatório para a animação
-            note.style.animationDelay = `${Math.random() * 2}s`;
-            
-            // Tamanho aleatório
-            const size = 0.5 + Math.random() * 2;
-            note.style.fontSize = `${size}rem`;
-            
-            // Cor aleatória
-            const colors = ['#c724ff', '#05d9e8', '#ff38a8', '#fff689'];
-            note.style.color = colors[Math.floor(Math.random() * colors.length)];
-            
-            // Adicionar ao body
-            document.body.appendChild(note);
-            
-            // Remover após a animação terminar
-            setTimeout(() => {
-                note.remove();
-            }, 4000);
+
+        // System Functions
+        function generateSessionId() {
+            return Math.random().toString(16).substring(2, 10).toUpperCase();
         }
-        
-        // Criar notas musicais periodicamente
-        function initMusicNotes() {
-            // Criar algumas notas iniciais
-            for (let i = 0; i < 10; i++) {
-                setTimeout(createMusicNote, i * 300);
-            }
-            
-            // Continuar criando notas
-            setInterval(createMusicNote, 1000);
+
+        function updateClock() {
+            const now = new Date();
+            sysTimeEl.textContent = now.toLocaleTimeString();
         }
-        
-        // Inicializar notas musicais
-        initMusicNotes();
-        
-        // Efeito de hover nas notas musicais
-        document.querySelectorAll('.note-container').forEach(container => {
-            const note = container.querySelector('.note-hover');
+
+        function updateUptime() {
+            const now = new Date();
+            const diff = now - systemStartTime;
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            uptimeEl.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function updateSystemStats() {
+            // Calculate based on active operations
+            const baseLoad = Math.min(30 + activeOperations.length * 2, 95);
             
-            container.addEventListener('mouseenter', () => {
-                note.classList.add('active');
-                
-                // Tocar uma nota musical aleatória
-                playRandomNote();
-            });
+            // CPU usage
+            const cpuUsage = Math.floor(baseLoad + Math.random() * 5);
+            cpuLoadEl.textContent = cpuUsage;
+            cpuBarEl.style.width = `${cpuUsage}%`;
             
-            container.addEventListener('mouseleave', () => {
-                note.classList.remove('active');
-            });
-        });
-        
-        // Função para tocar notas musicais
-        function playRandomNote() {
-            const notes = [
-                { note: 'C', frequency: 261.63 },
-                { note: 'D', frequency: 293.66 },
-                { note: 'E', frequency: 329.63 },
-                { note: 'F', frequency: 349.23 },
-                { note: 'G', frequency: 392.00 },
-                { note: 'A', frequency: 440.00 },
-                { note: 'B', frequency: 493.88 }
-            ];
+            // Memory usage (32-120GB)
+            const memUsage = Math.floor(32 + activeOperations.length * 0.2 + Math.random() * 5);
+            memUsageEl.textContent = memUsage;
+            memBarEl.style.width = `${(memUsage / 128) * 100}%`;
             
-            const randomNote = notes[Math.floor(Math.random() * notes.length)];
+            // Network speed (1-10 Gbps)
+            const netSpeed = (1 + activeOperations.length * 0.02 + Math.random() * 0.5).toFixed(2);
+            netSpeedEl.textContent = netSpeed;
+            netBarEl.style.width = `${(netSpeed / 10) * 100}%`;
             
-            // Criar contexto de áudio
-            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
+            // Active operations
+            activeOpsEl.textContent = activeOperations.length;
+            opsCountEl.textContent = activeOperations.length;
+            matrixCountEl.textContent = activeOperations.length;
+            opsBarEl.style.width = `${(activeOperations.length / 500) * 100}%`;
             
-            oscillator.type = 'sine';
-            oscillator.frequency.value = randomNote.frequency;
+            // Threat level (0-10)
+            threatLevel = Math.min(10, Math.floor(activeOperations.filter(op => 
+                op.type === 'EXPLOIT_EXEC' || op.type === 'BANK_TRANSFER' || 
+                op.type === 'CRYPTO_TRANSFER' || op.type === 'AI_ASSAULT').length / 5));
+            threatLevelEl.textContent = threatLevel;
+        }
+
+        function initializeTerminal() {
+            // Initial terminal output
+            addTerminalLine('Initializing QuantumHack AI v7.0...', 'info');
+            addTerminalLine('Loading quantum neural networks...', 'info');
+            addTerminalLine('Activating 256 AI cores...', 'info');
+            addTerminalLine('Establishing darknet connections...', 'info');
+            addTerminalLine('Bypassing quantum encryption...', 'warning');
+            addTerminalLine('AI neural network fully operational...', 'success');
+            addTerminalLine('All systems ready. Autonomous operations engaged.', 'highlight');
             
-            gainNode.gain.value = 0.1;
-            
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-            
-            oscillator.start();
-            
-            // Parar após um curto período
-            setTimeout(() => {
-                oscillator.stop();
+            // Simulate terminal input
+            setInterval(() => {
+                const cursor = terminalInput.textContent.endsWith('_') 
+                    ? terminalInput.textContent.slice(0, -1) 
+                    : terminalInput.textContent + '_';
+                terminalInput.textContent = cursor;
             }, 500);
         }
-        
-        // Efeito de partículas simplificado
-        function initParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 30;
+
+        function addTerminalLine(text, type = 'info') {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString();
             
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                
-                // Tamanho aleatório
-                const size = 1 + Math.random() * 3;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                
-                // Posição aleatória
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                
-                // Cor aleatória
-                const colors = ['#c724ff', '#05d9e8', '#ff38a8', '#fff689'];
-                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                
-                // Opacidade aleatória
-                particle.style.opacity = 0.2 + Math.random() * 0.8;
-                
-                // Animação
-                const duration = 5 + Math.random() * 10;
-                particle.style.animation = `float ${duration}s infinite ease-in-out`;
-                particle.style.animationDelay = `${Math.random() * 5}s`;
-                
-                particlesContainer.appendChild(particle);
+            const line = document.createElement('div');
+            line.className = `pl-1 mb-1 ${type}`;
+            line.innerHTML = `[${timeStr}] ${text}`;
+            terminalOutput.appendChild(line);
+            
+            // Keep terminal scroll at bottom
+            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+            
+            // Keep only last 200 lines
+            if (terminalOutput.children.length > 200) {
+                terminalOutput.removeChild(terminalOutput.children[0]);
             }
         }
-        
-        // Inicializar partículas quando o DOM estiver pronto
-        document.addEventListener('DOMContentLoaded', initParticles);
+
+        function initializeOperationsGrid() {
+            // Create 500 operation cells (10x50 grid)
+            for (let i = 0; i < 500; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'grid-cell p-0.5 border border-gray-800 relative';
+                cell.id = `op-cell-${i}`;
+                cell.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <span class="op-icon text-xxxs"></span>
+                        <span class="op-status text-xxxxs"></span>
+                    </div>
+                    <div class="op-progress h-0.5 mt-0.5 bg-black">
+                        <div class="h-full progress-bar"></div>
+                    </div>
+                    <div class="tooltip"></div>
+                `;
+                operationsGrid.appendChild(cell);
+            }
+        }
+
+        function startAutoMode() {
+            // Clear any existing interval
+            if (autoModeInterval) clearInterval(autoModeInterval);
+            
+            // Start new auto mode
+            autoModeInterval = setInterval(() => {
+                // Randomly add or remove operations
+                if (activeOperations.length < 500 && Math.random() > 0.3) {
+                    addRandomOperation();
+                } else if (activeOperations.length > 50 && Math.random() > 0.7) {
+                    completeRandomOperation();
+                }
+                
+                // Update all operations
+                updateAllOperations();
+                
+                // Randomly add transactions
+                if (Math.random() > 0.5) {
+                    addRandomTransaction();
+                }
+                
+                // Randomly add cracked passwords
+                if (Math.random() > 0.6) {
+                    addRandomPassword();
+                }
+                
+                // Randomly add account unlocks
+                if (Math.random() > 0.7) {
+                    addRandomAccountUnlock();
+                }
+                
+                // Randomly add receipts
+                if (Math.random() > 0.8) {
+                    addRandomReceipt();
+                }
+                
+            }, 500); // Faster updates for more activity
+            
+            // Initial operations (100-150)
+            const initialOps = Math.floor(Math.random() * 50) + 100;
+            for (let i = 0; i < initialOps; i++) {
+                addRandomOperation();
+            }
+            
+            addTerminalLine('AI autonomous mode engaged. Running 500 parallel operations.', 'highlight');
+        }
+
+        function addRandomOperation() {
+            if (activeOperations.length >= 500) return;
+            
+            const opType = OPERATION_TYPES[Math.floor(Math.random() * OPERATION_TYPES.length)];
+            const opId = generateOpId();
+            const duration = Math.floor(Math.random() * 10000) + 3000; // Faster operations
+            const startTime = Date.now();
+            const endTime = startTime + duration;
+            
+            const operation = {
+                id: opId,
+                type: opType.name,
+                startTime,
+                endTime,
+                progress: 0,
+                status: 'RUNNING',
+                details: generateOperationDetails(opType.name)
+            };
+            
+            activeOperations.push(operation);
+            updateOperationDisplay(operation);
+            
+            // Add to operations list
+            addOperationToList(operation);
+            
+            // Add terminal log
+            addTerminalLine(`AI started ${formatOpType(opType.name)} operation: ${operation.details}`, 'info');
+        }
+
+        function generateOpId() {
+            return 'OP-' + Math.random().toString(16).substring(2, 8).toUpperCase();
+        }
+
+        function generateOperationDetails(type) {
+            switch(type) {
+                case 'BANK_TRANSFER':
+                    const bank = BANK_NAMES[Math.floor(Math.random() * BANK_NAMES.length)];
+                    const amount = (Math.random() * 100000 + 5000).toFixed(2);
+                    const account = Math.random().toString().substring(2, 12);
+                    return `Transfer $${amount} from ${bank} (Acc: ${account})`;
+                
+                case 'CRYPTO_TRANSFER':
+                    const crypto = CRYPTO_TYPES[Math.floor(Math.random() * CRYPTO_TYPES.length)];
+                    const cryptoAmount = (Math.random() * 50 + 0.5).toFixed(4);
+                    const wallet = '0x' + Math.random().toString(16).substring(2, 10) + '...' + Math.random().toString(16).substring(2, 6);
+                    return `Transfer ${cryptoAmount} ${crypto} to ${wallet}`;
+                
+                case 'PASSWORD_CRACK':
+                    const services = ['Gmail', 'Facebook', 'Twitter', 'Instagram', 'LinkedIn', 'Bank', 'Netflix', 'Amazon', 'PayPal', 'eBay'];
+                    const service = services[Math.floor(Math.random() * services.length)];
+                    const users = ['admin', 'root', 'user', 'john', 'jane', 'mike', 'alice', 'bob', 'charlie', 'dave'];
+                    const user = users[Math.floor(Math.random() * users.length)] + Math.floor(Math.random() * 100);
+                    return `Crack ${service} password for ${user}@${service.toLowerCase()}.com`;
+                
+                case 'EXPLOIT_EXEC':
+                    const exploits = ['CVE-2023-32456', 'CVE-2023-29876', 'CVE-2023-21554', 'CVE-2023-12345', 'CVE-2023-67890'];
+                    const exploit = exploits[Math.floor(Math.random() * exploits.length)];
+                    const target = `10.${Math.floor(Math.random() * 254)+1}.${Math.floor(Math.random() * 254)+1}.${Math.floor(Math.random() * 254)+1}`;
+                    return `Execute ${exploit} on ${target}`;
+                
+                case 'NETWORK_SCAN':
+                    const subnet = `192.168.${Math.floor(Math.random() * 254)+1}.0/24`;
+                    return `Scan network ${subnet}`;
+                
+                case 'DATA_EXFIL':
+                    const dataTypes = ['documents', 'emails', 'database', 'config', 'source code', 'financial records', 'user data'];
+                    const dataType = dataTypes[Math.floor(Math.random() * dataTypes.length)];
+                    const targetOrg = ['Google', 'Microsoft', 'Amazon', 'Facebook', 'Twitter', 'Bank Corp', 'Tech Inc'][Math.floor(Math.random() * 7)];
+                    return `Exfiltrate ${dataType} from ${targetOrg}`;
+                
+                case 'LOG_CLEANUP':
+                    return `Clean logs on ${Math.random() > 0.5 ? 'local' : 'remote'} system`;
+                
+                case 'BACKDOOR_INSTALL':
+                    const osTypes = ['Windows', 'Linux', 'macOS', 'Android', 'iOS'];
+                    const osType = osTypes[Math.floor(Math.random() * osTypes.length)];
+                    return `Install backdoor on ${osType} target`;
+                
+                case 'PRIVILEGE_ESCALATE':
+                    return `Escalate privileges on ${['Windows', 'Linux', 'macOS'][Math.floor(Math.random() * 3)]} system`;
+                
+                case 'SURVEILLANCE':
+                    return `Monitor network traffic for keywords`;
+                
+                case 'ACCOUNT_UNLOCK':
+                    const accType = ACCOUNT_TYPES[Math.floor(Math.random() * ACCOUNT_TYPES.length)];
+                    const accId = Math.random().toString().substring(2, 10);
+                    return `Unlock ${accType} (ID: ${accId})`;
+                
+                case 'RECEIPT_GEN':
+                    const receiptAmount = (Math.random() * 5000 + 100).toFixed(2);
+                    return `Generate PIX receipt for R$${receiptAmount}`;
+                
+                case 'AI_ASSAULT':
+                    const aiTargets = ['Bank System', 'Government DB', 'Corporate Network', 'Cloud Provider', 'Crypto Exchange'];
+                    const aiTarget = aiTargets[Math.floor(Math.random() * aiTargets.length)];
+                    return `AI assault on ${aiTarget}`;
+                
+                case 'DEEP_SCAN':
+                    return `Deep scan ${['financial', 'government', 'corporate', 'medical', 'defense'][Math.floor(Math.random() * 5)]} network`;
+                
+                case 'SOCIAL_ENG':
+                    const socialTargets = ['CEO', 'CFO', 'SysAdmin', 'Developer', 'Support'];
+                    const socialTarget = socialTargets[Math.floor(Math.random() * socialTargets.length)];
+                    return `Social engineering attack on ${socialTarget}`;
+                
+                default:
+                    return `Operation ${type}`;
+            }
+        }
+
+        function formatOpType(type) {
+            return type.toLowerCase().replace(/_/g, ' ');
+        }
+
+        function addOperationToList(operation) {
+            const opType = OPERATION_TYPES.find(t => t.name === operation.type);
+            
+            const item = document.createElement('div');
+            item.className = `p-1 border-b border-gray-800 last:border-0 ${opType.color}`;
+            item.id = `op-list-${operation.id}`;
+            item.innerHTML = `
+                <div class="flex justify-between">
+                    <span><i class="fas ${opType.icon} mr-1"></i> ${formatOpType(operation.type)}</span>
+                    <span class="text-xxs">${operation.status}</span>
+                </div>
+                <div class="text-xxs truncate">${operation.details}</div>
+                <div class="w-full bg-black h-1 mt-1">
+                    <div class="h-full progress-bar" style="width: ${operation.progress}%"></div>
+                </div>
+            `;
+            
+            operationsList.appendChild(item);
+            operationsList.scrollTop = operationsList.scrollHeight;
+        }
+
+        function updateOperationDisplay(operation) {
+            const opType = OPERATION_TYPES.find(t => t.name === operation.type);
+            const cellIndex = activeOperations.findIndex(op => op.id === operation.id);
+            const cell = document.getElementById(`op-cell-${cellIndex}`);
+            
+            if (cell) {
+                cell.querySelector('.op-icon').innerHTML = `<i class="fas ${opType.icon} ${opType.color}"></i>`;
+                cell.querySelector('.op-status').textContent = `${operation.progress}%`;
+                cell.querySelector('.op-progress .progress-bar').style.width = `${operation.progress}%`;
+                cell.querySelector('.tooltip').textContent = `${operation.details} (${operation.status})`;
+                
+                if (operation.status === 'COMPLETED') {
+                    cell.classList.add('bg-gray-900');
+                } else if (operation.status === 'FAILED') {
+                    cell.classList.add('bg-red-900');
+                }
+            }
+            
+            // Update list item
+            const listItem = document.getElementById(`op-list-${operation.id}`);
+            if (listItem) {
+                listItem.querySelector('.progress-bar').style.width = `${operation.progress}%`;
+                listItem.querySelector('div:first-child span:last-child').textContent = operation.status;
+            }
+        }
+
+        function updateAllOperations() {
+            activeOperations.forEach(op => {
+                if (op.status === 'RUNNING') {
+                    const now = Date.now();
+                    op.progress = Math.min(100, ((now - op.startTime) / (op.endTime - op.startTime)) * 100);
+                    
+                    if (now >= op.endTime) {
+                        op.status = Math.random() > 0.1 ? 'COMPLETED' : 'FAILED';
+                        
+                        // Add terminal log
+                        if (op.status === 'COMPLETED') {
+                            addTerminalLine(`AI completed ${formatOpType(op.type)}: ${op.details}`, 'success');
+                            
+                            // If it's a password crack, add to password list
+                            if (op.type === 'PASSWORD_CRACK') {
+                                addCrackedPassword(op.details);
+                            }
+                            
+                            // If it's a bank transfer, add transaction
+                            if (op.type === 'BANK_TRANSFER' || op.type === 'CRYPTO_TRANSFER') {
+                                addCompletedTransaction(op.details);
+                            }
+                            
+                            // If it's an account unlock
+                            if (op.type === 'ACCOUNT_UNLOCK') {
+                                addAccountUnlock(op.details);
+                            }
+                            
+                            // If it's a receipt generation
+                            if (op.type === 'RECEIPT_GEN') {
+                                addReceipt(op.details);
+                            }
+                        } else {
+                            addTerminalLine(`AI failed ${formatOpType(op.type)}: ${op.details}`, 'critical');
+                        }
+                    }
+                    
+                    updateOperationDisplay(op);
+                }
+            });
+            
+            // Remove completed operations after a delay
+            activeOperations = activeOperations.filter(op => {
+                if (op.status === 'COMPLETED' || op.status === 'FAILED') {
+                    if (Date.now() - op.endTime > 5000) { // Keep for 5 seconds after completion
+                        const listItem = document.getElementById(`op-list-${op.id}`);
+                        if (listItem) listItem.remove();
+                        return false;
+                    }
+                }
+                return true;
+            });
+        }
+
+        function completeRandomOperation() {
+            if (activeOperations.length === 0) return;
+            
+            const runningOps = activeOperations.filter(op => op.status === 'RUNNING');
+            if (runningOps.length === 0) return;
+            
+            const randomOp = runningOps[Math.floor(Math.random() * runningOps.length)];
+            randomOp.progress = 100;
+            randomOp.status = 'COMPLETED';
+            randomOp.endTime = Date.now();
+            
+            updateOperationDisplay(randomOp);
+            addTerminalLine(`AI manually completed ${formatOpType(randomOp.type)}: ${randomOp.details}`, 'success');
+            
+            // If it's a password crack, add to password list
+            if (randomOp.type === 'PASSWORD_CRACK') {
+                addCrackedPassword(randomOp.details);
+            }
+            
+            // If it's a bank transfer, add transaction
+            if (randomOp.type === 'BANK_TRANSFER' || randomOp.type === 'CRYPTO_TRANSFER') {
+                addCompletedTransaction(randomOp.details);
+            }
+            
+            // If it's an account unlock
+            if (randomOp.type === 'ACCOUNT_UNLOCK') {
+                addAccountUnlock(randomOp.details);
+            }
+            
+            // If it's a receipt generation
+            if (randomOp.type === 'RECEIPT_GEN') {
+                addReceipt(randomOp.details);
+            }
+        }
+
+        function addCrackedPassword(details) {
+            const service = details.split(' ')[1];
+            const user = details.split(' ')[4];
+            const password = generatePassword();
+            
+            crackedPasswords.push({ service, user, password });
+            updatePasswordsList();
+        }
+
+        function generatePassword() {
+            const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';
+            let password = '';
+            
+            for (let i = 0; i < 16; i++) {
+                password += chars[Math.floor(Math.random() * chars.length)];
+            }
+            
+            return password;
+        }
+
+        function updatePasswordsList() {
+            passwordsList.innerHTML = '';
+            
+            crackedPasswords.slice().reverse().forEach(pwd => {
+                const item = document.createElement('div');
+                item.className = 'p-1 border-b border-gray-800 last:border-0';
+                item.innerHTML = `
+                    <div class="flex justify-between">
+                        <span class="font-bold password">${pwd.service}</span>
+                        <span class="text-xxs">${pwd.user}</span>
+                    </div>
+                    <div class="text-xxs password">${pwd.password}</div>
+                `;
+                
+                passwordsList.appendChild(item);
+            });
+        }
+
+        function addCompletedTransaction(details) {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString();
+            
+            transactions.push({
+                time: timeStr,
+                details: details,
+                amount: details.includes('$') ? details.split('$')[1].split(' ')[0] :
+                       details.split(' ')[1]
+            });
+            
+            updateTransactionsList();
+        }
+
+        function addRandomTransaction() {
+            const type = Math.random() > 0.5 ? 'BANK_TRANSFER' : 'CRYPTO_TRANSFER';
+            const details = generateOperationDetails(type);
+            addCompletedTransaction(details);
+        }
+
+        function updateTransactionsList() {
+            transactionsList.innerHTML = '';
+            
+            transactions.slice().reverse().forEach(txn => {
+                const item = document.createElement('div');
+                item.className = 'p-1 border-b border-gray-800 last:border-0';
+                item.innerHTML = `
+                    <div class="flex justify-between">
+                        <span class="transaction">[${txn.time}]</span>
+                        <span class="${txn.details.includes('$') ? 'bank' : 'crypto'}">${txn.details.includes('$') ? '$' + txn.amount : txn.amount + ' ' + txn.details.split(' ')[2]}</span>
+                    </div>
+                    <div class="text-xxs">${txn.details}</div>
+                `;
+                
+                transactionsList.appendChild(item);
+            });
+        }
+
+        function addAccountUnlock(details) {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString();
+            const accountType = details.split(' ')[1];
+            const accountId = details.split(' ')[3].replace('(', '').replace(')', '');
+            const country = COUNTRIES[Math.floor(Math.random() * COUNTRIES.length)];
+            
+            accountUnlocks.push({
+                time: timeStr,
+                accountType,
+                accountId,
+                country
+            });
+            
+            updateUnlocksList();
+        }
+
+        function addRandomAccountUnlock() {
+            const details = generateOperationDetails('ACCOUNT_UNLOCK');
+            addAccountUnlock(details);
+        }
+
+        function updateUnlocksList() {
+            unlocksList.innerHTML = '';
+            
+            accountUnlocks.slice().reverse().forEach(unlock => {
+                const item = document.createElement('div');
+                item.className = 'p-1 border-b border-gray-800 last:border-0';
+                item.innerHTML = `
+                    <div class="flex justify-between">
+                        <span class="unlock">[${unlock.time}]</span>
+                        <span class="text-xxs">${unlock.country}</span>
+                    </div>
+                    <div class="text-xxs">${unlock.accountType} (${unlock.accountId})</div>
+                `;
+                
+                unlocksList.appendChild(item);
+            });
+        }
+
+        function addReceipt(details) {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString();
+            const amount = details.split('R$')[1];
+            const receiptId = 'PIX-' + Math.random().toString(16).substring(2, 10).toUpperCase();
+            const sender = 'User-' + Math.random().toString(16).substring(2, 6);
+            const receiver = 'Recv-' + Math.random().toString(16).substring(2, 6);
+            
+            receipts.push({
+                time: timeStr,
+                receiptId,
+                amount,
+                sender,
+                receiver
+            });
+            
+            updateReceiptsList();
+        }
+
+        function addRandomReceipt() {
+            const details = generateOperationDetails('RECEIPT_GEN');
+            addReceipt(details);
+        }
+
+        function updateReceiptsList() {
+            receiptsList.innerHTML = '';
+            
+            receipts.slice().reverse().forEach(receipt => {
+                const item = document.createElement('div');
+                item.className = 'p-1 border-b border-gray-800 last:border-0';
+                item.innerHTML = `
+                    <div class="flex justify-between">
+                        <span class="receipt">[${receipt.time}]</span>
+                        <span class="text-xxs">${receipt.receiptId}</span>
+                    </div>
+                    <div class="text-xxs">R$${receipt.amount} from ${receipt.sender} to ${receipt.receiver}</div>
+                `;
+                
+                receiptsList.appendChild(item);
+            });
+        }
+
+        function initializeMemoryViewer() {
+            // Generate random memory data
+            const hexChars = '0123456789ABCDEF';
+            let memoryView = '';
+            
+            for (let i = 0; i < 64; i++) {
+                const address = i * 16;
+                let hexLine = '';
+                let asciiLine = '';
+                
+                // Generate 16 bytes
+                for (let j = 0; j < 16; j++) {
+                    const byte = hexChars[Math.floor(Math.random() * 16)] + hexChars[Math.floor(Math.random() * 16)];
+                    hexLine += byte + ' ';
+                    
+                    // Convert to ASCII
+                    const charCode = parseInt(byte, 16);
+                    asciiLine += charCode >= 32 && charCode <= 126 ? String.fromCharCode(charCode) : '.';
+                }
+                
+                memoryView += `
+                    <div class="flex mb-1">
+                        <span class="hex-addr mr-2">${address.toString(16).padStart(4, '0')}:</span>
+                        <span class="hex-data mr-4">${hexLine}</span>
+                        <span class="hex-asc">${asciiLine}</span>
+                    </div>
+                `;
+            }
+            
+            memoryViewer.innerHTML = memoryView;
+            
+            // Update memory view periodically
+            setInterval(() => {
+                // Just scroll to simulate activity
+                memoryViewer.scrollTop = (memoryViewer.scrollTop + 1) % memoryViewer.scrollHeight;
+                
+                // Occasionally update some bytes
+                if (Math.random() > 0.9) {
+                    const lines = memoryViewer.querySelectorAll('div');
+                    const randomLine = lines[Math.floor(Math.random() * lines.length)];
+                    
+                    if (randomLine) {
+                        const hexData = randomLine.querySelector('.hex-data');
+                        if (hexData) {
+                            const bytes = hexData.textContent.trim().split(' ');
+                            const randomByte = Math.floor(Math.random() * bytes.length);
+                            bytes[randomByte] = hexChars[Math.floor(Math.random() * 16)] + hexChars[Math.floor(Math.random() * 16)];
+                            hexData.textContent = bytes.join(' ') + ' ';
+                        }
+                    }
+                }
+            }, 100);
+        }
+
+        function initializeNetworkVisualization() {
+            // Create 100 network nodes
+            for (let i = 0; i < 100; i++) {
+                createNetworkNode();
+            }
+            
+            // Create connections between nodes
+            setInterval(() => {
+                // Remove some old connections
+                document.querySelectorAll('.connection').forEach(conn => {
+                    if (Math.random() > 0.8) {
+                        conn.remove();
+                    }
+                });
+                
+                // Add new connections
+                const nodes = document.querySelectorAll('.node');
+                if (nodes.length > 1) {
+                    const node1 = nodes[Math.floor(Math.random() * nodes.length)];
+                    const node2 = nodes[Math.floor(Math.random() * nodes.length)];
+                    
+                    if (node1 !== node2) {
+                        createConnection(node1, node2);
+                    }
+                }
+            }, 500); // Faster connections
+        }
+
+        function initializeAIVisualization() {
+            // Create 256 AI cores (small dots)
+            for (let i = 0; i < 256; i++) {
+                const core = document.createElement('div');
+                core.className = 'node';
+                core.style.width = '3px';
+                core.style.height = '3px';
+                core.style.left = `${Math.random() * 100}%`;
+                core.style.top = `${Math.random() * 100}%`;
+                core.style.boxShadow = `0 0 ${Math.random() * 5 + 2}px rgba(0, 255, 170, ${Math.random() * 0.3 + 0.1})`;
+                core.style.opacity = Math.random() * 0.5 + 0.5;
+                aiVisualization.appendChild(core);
+                
+                // Animate core
+                animateAICore(core);
+            }
+        }
+
+        function animateAICore(core) {
+            const duration = Math.random() * 5000 + 2000;
+            const newX = Math.random() * 100;
+            const newY = Math.random() * 100;
+            
+            core.style.transition = `left ${duration}ms ease-in-out, top ${duration}ms ease-in-out, opacity ${duration}ms linear`;
+            core.style.left = `${newX}%`;
+            core.style.top = `${newY}%`;
+            core.style.opacity = Math.random() * 0.5 + 0.5;
+            
+            setTimeout(() => animateAICore(core), duration);
+        }
+
+        function createNetworkNode() {
+            const node = document.createElement('div');
+            node.className = 'node';
+            
+            // Random position
+            node.style.left = `${Math.random() * 100}%`;
+            node.style.top = `${Math.random() * 100}%`;
+            
+            // Random glow
+            const glowSize = Math.random() * 8 + 3;
+            const glowOpacity = Math.random() * 0.4 + 0.1;
+            node.style.boxShadow = `0 0 ${glowSize}px rgba(0, 255, 170, ${glowOpacity})`;
+            
+            networkVisualization.appendChild(node);
+            
+            // Animate node
+            animateNode(node);
+        }
+
+        function animateNode(node) {
+            // Random movement
+            const duration = Math.random() * 10000 + 3000;
+            const newX = Math.random() * 100;
+            const newY = Math.random() * 100;
+            
+            node.style.transition = `left ${duration}ms ease-in-out, top ${duration}ms ease-in-out`;
+            node.style.left = `${newX}%`;
+            node.style.top = `${newY}%`;
+            
+            // Continue animation
+            setTimeout(() => animateNode(node), duration);
+        }
+
+        function createConnection(node1, node2) {
+            const rect1 = node1.getBoundingClientRect();
+            const rect2 = node2.getBoundingClientRect();
+            
+            const x1 = rect1.left + rect1.width / 2;
+            const y1 = rect1.top + rect1.height / 2;
+            const x2 = rect2.left + rect2.width / 2;
+            const y2 = rect2.top + rect2.height / 2;
+            
+            const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+            const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+            
+            const connection = document.createElement('div');
+            connection.className = 'connection';
+            connection.style.width = `${length}px`;
+            connection.style.height = '1px';
+            connection.style.left = `${x1}px`;
+            connection.style.top = `${y1}px`;
+            connection.style.transform = `rotate(${angle}deg)`;
+            
+            document.body.appendChild(connection);
+            
+            // Remove connection after animation
+            setTimeout(() => {
+                if (connection.parentNode) {
+                    connection.parentNode.removeChild(connection);
+                }
+            }, 1000); // Shorter connection duration
+        }
+
+        function initializeTooltips() {
+            document.addEventListener('mousemove', (e) => {
+                tooltip.style.left = `${e.pageX + 10}px`;
+                tooltip.style.top = `${e.pageY + 10}px`;
+            });
+        }
+
+        // User Actions
+        function executeAutoSequence() {
+            stopAllOperations();
+            startAutoMode();
+            addTerminalLine('Executing AI automated operation sequence...', 'highlight');
+        }
+
+        function stopAllOperations() {
+            activeOperations = [];
+            operationsList.innerHTML = '';
+            addTerminalLine('All operations stopped by AI command.', 'warning');
+        }
+
+        function randomizeOperations() {
+            stopAllOperations();
+            
+            // Add random number of operations (200-400)
+            const count = Math.floor(Math.random() * 200) + 200;
+            for (let i = 0; i < count; i++) {
+                addRandomOperation();
+            }
+            
+            addTerminalLine(`AI randomized ${count} operations.`, 'highlight');
+        }
+
+        function executeMassBankHack() {
+            // Add 50 bank transfer operations
+            for (let i = 0; i < 50; i++) {
+                const op = {
+                    id: generateOpId(),
+                    type: 'BANK_TRANSFER',
+                    startTime: Date.now(),
+                    endTime: Date.now() + Math.floor(Math.random() * 8000) + 2000,
+                    progress: 0,
+                    status: 'RUNNING',
+                    details: generateOperationDetails('BANK_TRANSFER')
+                };
+                
+                activeOperations.push(op);
+                updateOperationDisplay(op);
+                addOperationToList(op);
+            }
+            
+            addTerminalLine('AI initiating mass bank transfer operations...', 'bank');
+        }
+
+        function executeCryptoSteal() {
+            // Add 50 crypto transfer operations
+            for (let i = 0; i < 50; i++) {
+                const op = {
+                    id: generateOpId(),
+                    type: 'CRYPTO_TRANSFER',
+                    startTime: Date.now(),
+                    endTime: Date.now() + Math.floor(Math.random() * 8000) + 2000,
+                    progress: 0,
+                    status: 'RUNNING',
+                    details: generateOperationDetails('CRYPTO_TRANSFER')
+                };
+                
+                activeOperations.push(op);
+                updateOperationDisplay(op);
+                addOperationToList(op);
+            }
+            
+            addTerminalLine('AI initiating cryptocurrency extraction sequence...', 'crypto');
+        }
+
+        function executePasswordCrack() {
+            // Add 50 password crack operations
+            for (let i = 0; i < 50; i++) {
+                const op = {
+                    id: generateOpId(),
+                    type: 'PASSWORD_CRACK',
+                    startTime: Date.now(),
+                    endTime: Date.now() + Math.floor(Math.random() * 8000) + 2000,
+                    progress: 0,
+                    status: 'RUNNING',
+                    details: generateOperationDetails('PASSWORD_CRACK')
+                };
+                
+                activeOperations.push(op);
+                updateOperationDisplay(op);
+                addOperationToList(op);
+            }
+            
+            addTerminalLine('AI initiating distributed password cracking...', 'password');
+        }
+
+        function executeAccountUnlock() {
+            // Add 50 account unlock operations
+            for (let i = 0; i < 50; i++) {
+                const op = {
+                    id: generateOpId(),
+                    type: 'ACCOUNT_UNLOCK',
+                    startTime: Date.now(),
+                    endTime: Date.now() + Math.floor(Math.random() * 8000) + 2000,
+                    progress: 0,
+                    status: 'RUNNING',
+                    details: generateOperationDetails('ACCOUNT_UNLOCK')
+                };
+                
+                activeOperations.push(op);
+                updateOperationDisplay(op);
+                addOperationToList(op);
+            }
+            
+            addTerminalLine('AI initiating mass account unlocking sequence...', 'unlock');
+        }
+
+        function generateReceipts() {
+            // Add 50 receipt generation operations
+            for (let i = 0; i < 50; i++) {
+                const op = {
+                    id: generateOpId(),
+                    type: 'RECEIPT_GEN',
+                    startTime: Date.now(),
+                    endTime: Date.now() + Math.floor(Math.random() * 8000) + 2000,
+                    progress: 0,
+                    status: 'RUNNING',
+                    details: generateOperationDetails('RECEIPT_GEN')
+                };
+                
+                activeOperations.push(op);
+                updateOperationDisplay(op);
+                addOperationToList(op);
+            }
+            
+            addTerminalLine('AI generating PIX receipts...', 'receipt');
+        }
+
+        function executeAIAssault() {
+            // Add 100 AI assault operations
+            for (let i = 0; i < 100; i++) {
+                const op = {
+                    id: generateOpId(),
+                    type: 'AI_ASSAULT',
+                    startTime: Date.now(),
+                    endTime: Date.now() + Math.floor(Math.random() * 5000) + 1000,
+                    progress: 0,
+                    status: 'RUNNING',
+                    details: generateOperationDetails('AI_ASSAULT')
+                };
+                
+                activeOperations.push(op);
+                updateOperationDisplay(op);
+                addOperationToList(op);
+            }
+            
+            // Flash AI visualization
+            const flash = document.createElement('div');
+            flash.className = 'fixed inset-0 bg-green-500 opacity-20 pointer-events-none';
+            flash.style.zIndex = '10';
+            flash.style.animation = 'fadeOut 1s forwards';
+            document.body.appendChild(flash);
+            setTimeout(() => flash.remove(), 1000);
+            
+            addTerminalLine('AI NEURAL NETWORK ASSAULT INITIATED!', 'critical');
+            addTerminalLine('DEPLOYING 256 AI CORES FOR FULL-SCALE ATTACK', 'critical');
+            addTerminalLine('TARGET SYSTEMS COMPROMISED AT QUANTUM LEVEL', 'critical');
+        }
     </script>
 </body>
 </html>
