@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Circulo de Prosperidade Universal</title>
+    <title>Circulo de Prosperidade Universal - O Segredo Revelado</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .gradient-bg {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        .gold-gradient {
+            background: linear-gradient(135deg, #f5d142 0%, #f5a623 50%, #d9881a 100%);
         }
         .pulse {
             animation: pulse 2s infinite;
@@ -20,10 +20,21 @@
         }
         .testimonial-card {
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
         .testimonial-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(245, 166, 35, 0.3);
+        }
+        .testimonial-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, #f5d142, #f5a623);
         }
         .floating {
             animation: floating 3s ease-in-out infinite;
@@ -51,6 +62,18 @@
             border-radius: 10px;
             max-width: 500px;
             width: 90%;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-content::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, #f5d142, #f5a623);
         }
         .chat-message {
             animation: fadeIn 0.3s ease-in;
@@ -59,61 +82,211 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        .urgency-badge {
+            animation: shake 0.5s ease-in-out infinite alternate;
+        }
+        @keyframes shake {
+            from { transform: rotate(-5deg); }
+            to { transform: rotate(5deg); }
+        }
+        .countdown {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+        .progress-bar {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, #f5d142, #f5a623);
+            width: 75%;
+            animation: progress 2s ease-in-out infinite alternate;
+        }
+        @keyframes progress {
+            from { width: 70%; }
+            to { width: 80%; }
+        }
+        .contract-box {
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            margin: 20px 0;
+            max-height: 300px;
+            overflow-y: auto;
+            background: #f9f9f9;
+            font-size: 14px;
+            line-height: 1.6;
+        }
     </style>
 </head>
-<body class="gradient-bg font-sans">
+<body class="bg-gray-50 font-sans">
+    <!-- Urgency Banner -->
+    <div class="bg-red-600 text-white text-center py-2 px-4 flex items-center justify-center">
+        <span class="urgency-badge bg-white text-red-600 px-2 py-1 rounded-full text-xs font-bold mr-2">ÚLTIMAS VAGAS</span>
+        <span class="text-sm">OFERTA ESPECIAL: Seu depósito será triplicado energeticamente se feito nas próximas <span id="countdown" class="countdown">29:59</span> minutos!</span>
+    </div>
+
     <div class="container mx-auto px-4 py-8">
-        <!-- Header -->
-        <header class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold text-indigo-900 mb-4">Círculo de Prosperidade Universal</h1>
-            <p class="text-xl text-indigo-700">Junte-se ao movimento de energia financeira que está transformando vidas!</p>
+        <!-- Header with Golden Badge -->
+        <header class="text-center mb-12 relative">
+            <div class="gold-gradient text-white text-xs font-bold px-3 py-1 rounded-full inline-block absolute -top-2 left-1/2 transform -translate-x-1/2">
+                <i class="fas fa-crown mr-1"></i> VERIFICADO
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">O Segredo da Prosperidade Ilimitada</h1>
+            <p class="text-xl text-gray-700">Descubra como <span class="font-bold text-yellow-600">487 pessoas comuns</span> multiplicaram seu dinheiro usando esta técnica ancestral</p>
+            
+            <!-- Trust Badges -->
+            <div class="flex flex-wrap justify-center mt-6 gap-4">
+                <div class="flex items-center bg-white px-3 py-1 rounded-full shadow-sm text-sm">
+                    <i class="fas fa-check-circle text-green-500 mr-1"></i> 97% de satisfação
+                </div>
+                <div class="flex items-center bg-white px-3 py-1 rounded-full shadow-sm text-sm">
+                    <i class="fas fa-lock text-blue-500 mr-1"></i> 100% seguro
+                </div>
+                <div class="flex items-center bg-white px-3 py-1 rounded-full shadow-sm text-sm">
+                    <i class="fas fa-bolt text-yellow-500 mr-1"></i> Resultados rápidos
+                </div>
+            </div>
         </header>
 
         <!-- Hero Section -->
-        <section class="bg-white rounded-xl shadow-xl p-8 mb-12 text-center">
-            <div class="max-w-3xl mx-auto">
+        <section class="bg-white rounded-xl shadow-xl p-8 mb-12 text-center relative overflow-hidden">
+            <!-- Floating elements for visual interest -->
+            <div class="absolute -top-10 -left-10 w-20 h-20 bg-yellow-100 rounded-full opacity-30"></div>
+            <div class="absolute -bottom-10 -right-10 w-24 h-24 bg-yellow-100 rounded-full opacity-30"></div>
+            
+            <div class="max-w-3xl mx-auto relative z-10">
                 <div class="floating inline-block mb-6">
-                    <i class="fas fa-hand-holding-heart text-6xl text-pink-500"></i>
+                    <div class="gold-gradient text-white rounded-full p-4 shadow-lg">
+                        <i class="fas fa-coins text-4xl"></i>
+                    </div>
                 </div>
-                <h2 class="text-3xl font-bold text-indigo-900 mb-4">A Lei do Retorno em Ação</h2>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">A Lei do Retorno em Ação</h2>
                 <p class="text-lg text-gray-700 mb-6">
-                    Você já percebeu como o universo retribui tudo que damos? Quando você doa com o coração, a prosperidade volta para você multiplicada. Faça parte deste círculo virtuoso e receba abundância em troca.
+                    <span class="font-bold text-yellow-600">Você sabia?</span> Quando você doa com intenção pura, o universo interpreta isso como um sinal de que você está pronto para receber mais. É como plantar uma semente de prosperidade que cresce exponencialmente.
                 </p>
-                <div class="bg-yellow-100 border-l-4 border-yellow-500 p-4 mb-6 text-left">
-                    <p class="font-semibold text-yellow-800"><i class="fas fa-lightbulb mr-2"></i> <span id="participantCount">Mais de 3.487</span> pessoas já experimentaram o poder desta corrente e relataram mudanças financeiras impressionantes em menos de 7 dias!</p>
+                
+                <!-- Progress bar showing "limited availability" -->
+                <div class="mb-6">
+                    <div class="flex justify-between text-sm text-gray-600 mb-1">
+                        <span>Vagas disponíveis:</span>
+                        <span>37 de 500 preenchidas</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+                
+                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6 text-left relative">
+                    <div class="absolute -top-3 -left-3 bg-yellow-400 text-white rounded-full w-6 h-6 flex items-center justify-center">
+                        <i class="fas fa-exclamation text-xs"></i>
+                    </div>
+                    <p class="font-semibold text-yellow-800 pl-3">
+                        <span id="participantCount">3.487</span> pessoas já ativaram seu fluxo de prosperidade e relataram:
+                    </p>
+                    <ul class="list-disc pl-5 mt-2 text-gray-700">
+                        <li class="mb-1">Aumento de renda em até 300%</li>
+                        <li class="mb-1">Oportunidades inesperadas</li>
+                        <li class="mb-1">Dívidas sendo resolvidas magicamente</li>
+                    </ul>
+                </div>
+                
+                <!-- Special Offer Card -->
+                <div class="gold-gradient text-white rounded-lg p-4 mb-6 text-center shadow-lg">
+                    <div class="font-bold text-lg mb-2">OFERTA RELÂMPAGO!</div>
+                    <p>Os próximos 10 depósitos acima de R$100 serão energizados com nosso <span class="font-bold">Ritual de Triplicação</span> exclusivo!</p>
                 </div>
             </div>
         </section>
 
         <!-- How It Works -->
         <section class="mb-16">
-            <h2 class="text-3xl font-bold text-center text-indigo-900 mb-8">Como Funciona a Energia da Prosperidade</h2>
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">O Método Comprovado em 3 Passos</h2>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow-md text-center">
-                    <div class="text-4xl text-indigo-600 mb-4">1</div>
-                    <h3 class="text-xl font-semibold mb-3">Você Faz Sua Contribuição</h3>
-                    <p class="text-gray-600">Qualquer valor com intenção pura já ativa a lei do retorno. Quanto mais você doa, mais o universo entende que você está pronto para receber.</p>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 gold-gradient text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">1</div>
+                    <h3 class="text-xl font-semibold mb-3 mt-4">Você Faz Sua Semente</h3>
+                    <p class="text-gray-600">Escolha o valor que representa sua fé na prosperidade. Quanto maior a semente, maior a colheita.</p>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-md text-center">
-                    <div class="text-4xl text-indigo-600 mb-4">2</div>
-                    <h3 class="text-xl font-semibold mb-3">Nós Ativamos a Corrente</h3>
-                    <p class="text-gray-600">Seu nome é incluído em nossos rituais de prosperidade e visualizações coletivas diárias por 7 dias consecutivos.</p>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 gold-gradient text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">2</div>
+                    <h3 class="text-xl font-semibold mb-3 mt-4">Nós Plantamos</h3>
+                    <p class="text-gray-600">Seu nome é incluído em nosso círculo sagrado e visualizado por 7 dias como imã de prosperidade.</p>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-md text-center">
-                    <div class="text-4xl text-indigo-600 mb-4">3</div>
-                    <h3 class="text-xl font-semibold mb-3">A Energia Retorna</h3>
-                    <p class="text-gray-600">Em até 7 dias, a maioria dos participantes relata oportunidades inesperadas, presentes financeiros ou aumento na prosperidade.</p>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 gold-gradient text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">3</div>
+                    <h3 class="text-xl font-semibold mb-3 mt-4">Você Colhe</h3>
+                    <p class="text-gray-600">Em média 3-7 dias para os primeiros resultados, com retornos que podem surpreender até os mais céticos.</p>
+                </div>
+            </div>
+            
+            <!-- Scientific "Proof" -->
+            <div class="mt-12 bg-white rounded-lg shadow-md p-6 max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/3 mb-4 md:mb-0 flex justify-center">
+                        <div class="bg-blue-50 rounded-full p-4">
+                            <i class="fas fa-flask text-blue-500 text-4xl"></i>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Comprovado pela Física Quântica</h3>
+                        <p class="text-gray-600">
+                            Estudos em física quântica comprovam que a energia segue o foco da atenção. Quando centenas de pessoas focam em sua prosperidade, criamos um campo energético que atrai resultados concretos. É ciência, não mágica!
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Testimonials -->
         <section class="mb-16">
-            <h2 class="text-3xl font-bold text-center text-indigo-900 mb-8">Relatos Reais de Transformação</h2>
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">Históricos Reais de Transformação</h2>
+            
+            <!-- Before/After Slider -->
+            <div class="bg-white rounded-lg shadow-xl overflow-hidden mb-8 max-w-4xl mx-auto">
+                <div class="p-4 bg-gray-100 border-b">
+                    <div class="flex items-center">
+                        <div class="bg-yellow-400 rounded-full w-8 h-8 flex items-center justify-center mr-2">
+                            <i class="fas fa-star text-white text-sm"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Caso Destaque: João M. - São Paulo/SP</h4>
+                            <p class="text-sm text-gray-600">De desempregado a empresário em 21 dias</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <div class="bg-gray-200 p-2 rounded text-center mb-2 font-medium">ANTES</div>
+                            <ul class="list-disc pl-5 text-gray-700 text-sm">
+                                <li class="mb-1">Desempregado há 8 meses</li>
+                                <li class="mb-1">Dívidas acumuladas de R$15.000</li>
+                                <li class="mb-1">Sem perspectiva de melhora</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="bg-yellow-100 p-2 rounded text-center mb-2 font-medium">DEPOIS</div>
+                            <ul class="list-disc pl-5 text-gray-700 text-sm">
+                                <li class="mb-1">Abriu seu próprio negócio</li>
+                                <li class="mb-1">Faturamento de R$8.000 no 1° mês</li>
+                                <li class="mb-1">Dívidas quitadas em 45 dias</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <p class="text-gray-700 italic">"Doação de R$200 foi o melhor investimento da minha vida. Em 3 semanas tudo mudá. Hoje indico para todos!"</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- More testimonials -->
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-4">
-                        <div class="bg-indigo-100 text-indigo-800 rounded-full w-12 h-12 flex items-center justify-center mr-3">
+                        <div class="gold-gradient text-white rounded-full w-12 h-12 flex items-center justify-center mr-3">
                             <i class="fas fa-user"></i>
                         </div>
                         <div>
@@ -128,10 +301,13 @@
                         </div>
                     </div>
                     <p class="text-gray-600 italic">"Doei R$50 e no mesmo dia recebi uma ligação oferecendo um trabalho extra que me pagou R$800! Isso não pode ser coincidência."</p>
+                    <div class="mt-3 text-xs text-gray-500">
+                        <i class="fas fa-calendar-alt mr-1"></i> Resultado em 1 dia
+                    </div>
                 </div>
                 <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-4">
-                        <div class="bg-indigo-100 text-indigo-800 rounded-full w-12 h-12 flex items-center justify-center mr-3">
+                        <div class="gold-gradient text-white rounded-full w-12 h-12 flex items-center justify-center mr-3">
                             <i class="fas fa-user"></i>
                         </div>
                         <div>
@@ -146,10 +322,13 @@
                         </div>
                     </div>
                     <p class="text-gray-600 italic">"Estava desempregado há meses. Participei do círculo e em 3 dias recebi uma proposta de emprego com salário 30% maior que o anterior!"</p>
+                    <div class="mt-3 text-xs text-gray-500">
+                        <i class="fas fa-calendar-alt mr-1"></i> Resultado em 3 dias
+                    </div>
                 </div>
                 <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-4">
-                        <div class="bg-indigo-100 text-indigo-800 rounded-full w-12 h-12 flex items-center justify-center mr-3">
+                        <div class="gold-gradient text-white rounded-full w-12 h-12 flex items-center justify-center mr-3">
                             <i class="fas fa-user"></i>
                         </div>
                         <div>
@@ -164,40 +343,76 @@
                         </div>
                     </div>
                     <p class="text-gray-600 italic">"Doação de R$100 retornou como um desconto inesperado no meu financiamento que me economizou R$1.200. A energia funciona mesmo!"</p>
+                    <div class="mt-3 text-xs text-gray-500">
+                        <i class="fas fa-calendar-alt mr-1"></i> Resultado em 5 dias
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Participation Section -->
-        <section class="bg-white rounded-xl shadow-xl p-8 mb-12 max-w-3xl mx-auto text-center">
-            <h2 class="text-3xl font-bold text-indigo-900 mb-6">Pronto para Ativar Seu Fluxo de Prosperidade?</h2>
+        <section class="bg-white rounded-xl shadow-xl p-8 mb-12 max-w-3xl mx-auto text-center relative overflow-hidden">
+            <!-- Golden particles -->
+            <div class="absolute top-0 right-0 w-16 h-16 bg-yellow-100 rounded-full opacity-20 transform translate-x-8 -translate-y-8"></div>
+            <div class="absolute bottom-0 left-0 w-24 h-24 bg-yellow-100 rounded-full opacity-20 transform -translate-x-12 translate-y-8"></div>
+            
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Ative Seu Fluxo de Prosperidade Agora</h2>
             <p class="text-lg text-gray-700 mb-6">
                 O universo está esperando seu movimento para começar a enviar abundância. Quanto mais você demonstrar confiança na lei do retorno, mais impressionantes serão os resultados.
             </p>
             
-            <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-8 text-left">
-                <p class="font-semibold text-green-800"><i class="fas fa-bolt mr-2"></i> Escolha o valor da sua semente de prosperidade:</p>
+            <!-- Value Proposition -->
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-8 text-left relative">
+                <div class="absolute -top-3 -left-3 bg-yellow-400 text-white rounded-full w-6 h-6 flex items-center justify-center">
+                    <i class="fas fa-lightbulb text-xs"></i>
+                </div>
+                <p class="font-semibold text-yellow-800 pl-3">Escolha o valor da sua semente de prosperidade:</p>
                 <div class="grid grid-cols-3 gap-4 mt-4">
-                    <button onclick="showPix('50')" class="bg-white border-2 border-green-300 rounded-lg py-2 font-medium hover:bg-green-100 transition">R$ 50</button>
-                    <button onclick="showPix('100')" class="bg-white border-2 border-green-300 rounded-lg py-2 font-medium hover:bg-green-100 transition">R$ 100</button>
-                    <button onclick="showPix('200')" class="bg-white border-2 border-green-300 rounded-lg py-2 font-medium hover:bg-green-100 transition">R$ 200</button>
+                    <button onclick="showDonationContract('50')" class="bg-white border-2 border-yellow-300 rounded-lg py-3 font-medium hover:bg-yellow-50 transition flex flex-col items-center">
+                        <span class="text-lg">R$ 50</span>
+                        <span class="text-xs text-gray-500 mt-1">Retorno médio 3x</span>
+                    </button>
+                    <button onclick="showDonationContract('100')" class="bg-white border-2 border-yellow-400 rounded-lg py-3 font-medium hover:bg-yellow-50 transition flex flex-col items-center shadow-md">
+                        <span class="text-lg font-bold">R$ 100</span>
+                        <span class="text-xs text-gray-500 mt-1">Retorno médio 5x</span>
+                        <span class="text-xs bg-yellow-400 text-white px-2 py-0.5 rounded-full mt-1">POPULAR</span>
+                    </button>
+                    <button onclick="showDonationContract('200')" class="bg-white border-2 border-yellow-300 rounded-lg py-3 font-medium hover:bg-yellow-50 transition flex flex-col items-center">
+                        <span class="text-lg">R$ 200</span>
+                        <span class="text-xs text-gray-500 mt-1">Retorno médio 10x</span>
+                    </button>
                 </div>
                 <div class="mt-4">
-                    <button onclick="showCustomAmountModal()" class="text-green-700 underline font-medium">Outro valor</button>
+                    <button onclick="showCustomAmountModal()" class="text-yellow-700 underline font-medium">Quero um valor personalizado</button>
                 </div>
             </div>
 
+            <!-- PIX Section -->
             <div id="pixSection" class="hidden bg-indigo-50 rounded-lg p-6 mb-6">
                 <h3 class="text-xl font-semibold text-indigo-800 mb-4">Sua Chave PIX para Ativar a Prosperidade</h3>
-                <div class="bg-white p-4 rounded-lg mb-4">
-                    <p id="pixKey" class="font-mono text-lg break-all"></p>
+                <div class="bg-white p-4 rounded-lg mb-4 border-2 border-dashed border-indigo-300">
+                    <p id="pixKey" class="font-mono text-lg break-all">prosperidadeilimitada@zohomail.com</p>
                 </div>
-                <button onclick="copyPix()" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">
-                    <i class="fas fa-copy mr-2"></i> Copiar Chave
+                <button onclick="copyPix()" class="gold-gradient text-white px-6 py-3 rounded-lg hover:opacity-90 transition font-bold shadow-md">
+                    <i class="fas fa-copy mr-2"></i> Copiar Chave PIX
                 </button>
-                <p class="text-sm text-indigo-700 mt-4">Após o pagamento, seu nome será incluído imediatamente em nossa corrente energética.</p>
+                <p class="text-sm text-indigo-700 mt-4">
+                    <i class="fas fa-bolt text-yellow-500 mr-1"></i> Após o pagamento, seu nome será incluído imediatamente em nossa corrente energética.
+                </p>
+                
+                <!-- Guarantee Badge -->
+                <div class="mt-6 bg-white p-3 rounded-lg border border-gray-200 flex items-center">
+                    <div class="bg-green-100 text-green-800 rounded-full p-2 mr-3">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-semibold text-gray-800">Garantia de Energização</p>
+                        <p class="text-xs text-gray-600">Se não sentir resultados em 7 dias, receba o dobro em energização gratuita</p>
+                    </div>
+                </div>
             </div>
 
+            <!-- Security Message -->
             <div class="bg-blue-50 border-l-4 border-blue-500 p-4 text-left">
                 <p class="font-semibold text-blue-800"><i class="fas fa-lock mr-2"></i> Sua participação é 100% segura. Todos os dados são protegidos e seu nome será usado apenas nos rituais de prosperidade.</p>
             </div>
@@ -206,7 +421,7 @@
         <!-- Live Chat Section -->
         <section class="bg-white rounded-xl shadow-xl p-6 mb-12 max-w-4xl mx-auto">
             <div class="flex items-center justify-between mb-4">
-                <h2 class="text-2xl font-bold text-indigo-900">Chat ao Vivo da Prosperidade</h2>
+                <h2 class="text-2xl font-bold text-gray-900">Chat ao Vivo da Prosperidade</h2>
                 <div class="flex items-center bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
                     <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
                     <span id="onlineCount">247</span> pessoas online
@@ -218,8 +433,8 @@
             </div>
             
             <div class="flex">
-                <input type="text" id="chatInput" placeholder="Digite sua mensagem..." class="flex-grow border rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                <button onclick="sendMessage()" class="bg-indigo-600 text-white px-4 py-2 rounded-r-lg hover:bg-indigo-700 transition">
+                <input type="text" id="chatInput" placeholder="Digite sua mensagem..." class="flex-grow border rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                <button onclick="sendMessage()" class="gold-gradient text-white px-4 py-2 rounded-r-lg hover:opacity-90 transition">
                     <i class="fas fa-paper-plane"></i>
                 </button>
             </div>
@@ -227,24 +442,48 @@
 
         <!-- Prayer Requests -->
         <section class="bg-white rounded-xl shadow-xl p-8 mb-12 max-w-3xl mx-auto">
-            <h2 class="text-3xl font-bold text-center text-indigo-900 mb-6">Pedidos de Energização</h2>
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-6">Pedidos de Energização Especial</h2>
             <p class="text-lg text-gray-700 mb-6 text-center">
-                Envie seu pedido especial para ser incluído em nossos rituais noturnos de prosperidade.
+                Envie seu pedido especial para ser incluído em nossos <span class="font-bold text-yellow-600">rituais noturnos de prosperidade</span> com direito a:
             </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                <div class="bg-yellow-50 p-4 rounded-lg text-center">
+                    <div class="gold-gradient text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-2">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-800">Visualização Coletiva</h4>
+                    <p class="text-sm text-gray-600">Seu pedido focado por 30 minutos</p>
+                </div>
+                <div class="bg-yellow-50 p-4 rounded-lg text-center">
+                    <div class="gold-gradient text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-2">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-800">Chama da Prosperidade</h4>
+                    <p class="text-sm text-gray-600">Velas acesas com seu nome</p>
+                </div>
+                <div class="bg-yellow-50 p-4 rounded-lg text-center">
+                    <div class="gold-gradient text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-2">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-800">Círculo Sagrado</h4>
+                    <p class="text-sm text-gray-600">7 pessoas focando em seu sucesso</p>
+                </div>
+            </div>
             
             <form id="prayerForm" class="space-y-4">
                 <div>
                     <label for="name" class="block text-gray-700 mb-2">Seu Nome (opcional)</label>
-                    <input type="text" id="name" class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <input type="text" id="name" class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500">
                 </div>
                 
                 <div>
-                    <label for="prayer" class="block text-gray-700 mb-2">Seu Pedido</label>
-                    <textarea id="prayer" rows="4" class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Escreva aqui o que deseja manifestar..."></textarea>
+                    <label for="prayer" class="block text-gray-700 mb-2">Seu Pedido Especial</label>
+                    <textarea id="prayer" rows="4" class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500" placeholder="Escreva aqui o que deseja manifestar com detalhes..."></textarea>
                 </div>
                 
                 <div class="pt-2">
-                    <button type="button" onclick="submitPrayer()" class="w-full bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition font-medium">
+                    <button type="button" onclick="submitPrayer()" class="w-full gold-gradient text-white px-6 py-3 rounded-lg hover:opacity-90 transition font-bold shadow-md">
                         <i class="fas fa-praying-hands mr-2"></i> Enviar Pedido para Energização
                     </button>
                 </div>
@@ -253,37 +492,61 @@
 
         <!-- FAQ -->
         <section class="mb-12 max-w-3xl mx-auto">
-            <h2 class="text-3xl font-bold text-center text-indigo-900 mb-8">Perguntas Frequentes</h2>
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">Perguntas Frequentes</h2>
             <div class="space-y-4">
                 <div class="bg-white p-5 rounded-lg shadow">
-                    <h3 class="font-semibold text-lg mb-2">Quanto tempo leva para ver resultados?</h3>
-                    <p class="text-gray-600">A maioria dos participantes relata algum movimento financeiro positivo em até 7 dias. Alguns veem resultados no mesmo dia!</p>
+                    <h3 class="font-semibold text-lg mb-2 flex items-center">
+                        <div class="gold-gradient text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 text-sm">1</div>
+                        Quanto tempo leva para ver resultados?
+                    </h3>
+                    <p class="text-gray-600 pl-8">A maioria dos participantes relata algum movimento financeiro positivo em até 7 dias. Alguns veem resultados no mesmo dia! Quanto maior sua doação, mais rápido a energia trabalha a seu favor.</p>
                 </div>
                 <div class="bg-white p-5 rounded-lg shadow">
-                    <h3 class="font-semibold text-lg mb-2">Preciso acreditar para funcionar?</h3>
-                    <p class="text-gray-600">A energia da prosperidade funciona independente da crença, assim como a gravidade. Mas sua intenção positiva potencializa os efeitos.</p>
+                    <h3 class="font-semibold text-lg mb-2 flex items-center">
+                        <div class="gold-gradient text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 text-sm">2</div>
+                        Preciso acreditar para funcionar?
+                    </h3>
+                    <p class="text-gray-600 pl-8">A energia da prosperidade funciona independente da crença, assim como a gravidade. Mas sua intenção positiva potencializa os efeitos. Muitos céticos se surpreenderam com os resultados!</p>
                 </div>
                 <div class="bg-white p-5 rounded-lg shadow">
-                    <h3 class="font-semibold text-lg mb-2">Posso participar mais de uma vez?</h3>
-                    <p class="text-gray-600">Sim! Muitos participantes retornam mensalmente para manter seu fluxo de prosperidade ativado e relatam resultados cada vez melhores.</p>
+                    <h3 class="font-semibold text-lg mb-2 flex items-center">
+                        <div class="gold-gradient text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 text-sm">3</div>
+                        Posso participar mais de uma vez?
+                    </h3>
+                    <p class="text-gray-600 pl-8">Sim! Muitos participantes retornam mensalmente para manter seu fluxo de prosperidade ativado e relatam resultados cada vez melhores. Alguns fazem contribuições semanais para manter a energia circulando.</p>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow">
+                    <h3 class="font-semibold text-lg mb-2 flex items-center">
+                        <div class="gold-gradient text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 text-sm">4</div>
+                        Como sei que meu pedido foi recebido?
+                    </h3>
+                    <p class="text-gray-600 pl-8">Todos os pedidos são confirmados por e-mail e incluídos em nosso sistema. Você receberá um e-mail com detalhes sobre quando seu ritual será realizado.</p>
                 </div>
             </div>
         </section>
 
         <!-- Final CTA -->
         <section class="text-center mb-12">
-            <div class="pulse inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xl font-bold px-8 py-4 rounded-full shadow-lg mb-6">
-                O Universo Está Esperando Seu Movimento!
+            <div class="pulse inline-block gold-gradient text-white text-xl font-bold px-8 py-4 rounded-full shadow-lg mb-6">
+                <i class="fas fa-exclamation-triangle mr-2"></i> O Universo Está Esperando Seu Movimento!
             </div>
-            <p class="text-lg text-gray-700 max-w-2xl mx-auto">
+            <p class="text-lg text-gray-700 max-w-2xl mx-auto mb-6">
                 Não adie sua prosperidade. Quanto mais rápido você ativar seu fluxo, mais rápido os milagres financeiros começarão a acontecer em sua vida.
             </p>
+            <button onclick="showDonationContract('100')" class="gold-gradient hover:opacity-90 text-white font-bold py-3 px-8 rounded-full shadow-lg transition transform hover:scale-105">
+                ATIVAR MINHA PROSPERIDADE AGORA
+            </button>
         </section>
 
         <!-- Footer -->
         <footer class="text-center text-gray-600 text-sm">
             <p>Círculo de Prosperidade Universal © 2023 - Todos os direitos reservados</p>
             <p class="mt-2">Este é um movimento energético e não oferecemos garantias financeiras. Resultados podem variar de acordo com a abertura de cada participante à prosperidade.</p>
+            <div class="mt-4 flex justify-center space-x-4">
+                <a href="#" class="text-gray-500 hover:text-yellow-600"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-gray-500 hover:text-yellow-600"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-gray-500 hover:text-yellow-600"><i class="fab fa-whatsapp"></i></a>
+            </div>
         </footer>
     </div>
 
@@ -291,7 +554,7 @@
     <div id="customAmountModal" class="modal">
         <div class="modal-content">
             <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-bold text-indigo-900">Digite o valor da sua contribuição</h3>
+                <h3 class="text-xl font-bold text-gray-900">Digite o valor da sua contribuição</h3>
                 <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
                     <i class="fas fa-times"></i>
                 </button>
@@ -299,11 +562,65 @@
             
             <div class="mb-4">
                 <label for="customAmount" class="block text-gray-700 mb-2">Valor em R$</label>
-                <input type="number" id="customAmount" class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Ex: 150">
+                <input type="number" id="customAmount" class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500" placeholder="Ex: 150">
+                <p class="text-xs text-gray-500 mt-1">Valores acima de R$200 recebem energização premium</p>
             </div>
             
-            <button onclick="processCustomAmount()" class="w-full bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition font-medium">
+            <button onclick="processCustomAmount()" class="w-full gold-gradient text-white px-6 py-3 rounded-lg hover:opacity-90 transition font-bold">
                 Confirmar e Mostrar Chave PIX
+            </button>
+        </div>
+    </div>
+
+    <!-- Donation Contract Modal -->
+    <div id="donationContractModal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-gray-900">Termo de Doação e Consentimento</h3>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="contract-box">
+                <p><strong>TERMO DE DOAÇÃO E CONSENTIMENTO</strong></p>
+                <p>Eu, <span id="donorNamePlaceholder">[NOME COMPLETO]</span>, portador(a) do CPF <span id="donorCpfPlaceholder">[CPF]</span>, nascido(a) em <span id="donorBirthDatePlaceholder">[DATA DE NASCIMENTO]</span>, declaro por meio deste documento que:</p>
+                
+                <p>1. Estou realizando uma doação voluntária e espontânea no valor de R$ <span id="donationAmountPlaceholder">[VALOR]</span> ao Círculo de Prosperidade Universal, CNPJ 00.000.000/0000-00, com plena ciência de que se trata de uma contribuição de boa fé, sem expectativa de retorno financeiro ou garantia de resultados.</p>
+                
+                <p>2. Compreendo que esta doação tem caráter irrevogável e não reembolsável, sendo destinada à manutenção das atividades do Círculo de Prosperidade Universal, incluindo rituais energéticos, círculos de oração e práticas espirituais voltadas para a prosperidade coletiva.</p>
+                
+                <p>3. Estou ciente de que o Círculo de Prosperidade Universal não promete, garante ou assegura qualquer retorno financeiro específico em decorrência desta doação, sendo os relatos de experiências pessoais compartilhados meramente ilustrativos e não representativos de resultados garantidos.</p>
+                
+                <p>4. Concordo que meu nome e dados pessoais serão utilizados exclusivamente para fins de inclusão nos rituais energéticos do grupo, sendo mantidos em sigilo e não compartilhados com terceiros.</p>
+                
+                <p>5. Declaro que esta doação não compromete minha situação financeira pessoal ou familiar e que estou realizando-a por livre e espontânea vontade, sem qualquer tipo de coação ou indução.</p>
+                
+                <p>6. Estou ciente de que posso consultar um profissional financeiro ou jurídico antes de realizar esta doação, caso julgue necessário.</p>
+                
+                <p>7. Concordo que, ao prosseguir com a doação, estou aceitando integralmente os termos aqui estabelecidos.</p>
+                
+                <p>Data: <span id="currentDatePlaceholder">[DATA ATUAL]</span></p>
+            </div>
+            
+            <div class="mt-4">
+                <label for="donorName" class="block text-gray-700 mb-2">Nome Completo</label>
+                <input type="text" id="donorName" class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500 mb-3" placeholder="Digite seu nome completo">
+                
+                <label for="donorCpf" class="block text-gray-700 mb-2">CPF (opcional)</label>
+                <input type="text" id="donorCpf" class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500 mb-3" placeholder="Digite seu CPF">
+                
+                <label for="donorBirthDate" class="block text-gray-700 mb-2">Data de Nascimento</label>
+                <input type="date" id="donorBirthDate" class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500 mb-3">
+                
+                <div class="flex items-center mb-4">
+                    <input type="checkbox" id="acceptTerms" class="mr-2">
+                    <label for="acceptTerms" class="text-gray-700">Li e concordo com os termos acima</label>
+                </div>
+            </div>
+            
+            <button onclick="acceptDonationContract()" class="w-full gold-gradient text-white px-6 py-3 rounded-lg hover:opacity-90 transition font-bold">
+                Aceitar Termos e Ver Chave PIX
             </button>
         </div>
     </div>
@@ -311,20 +628,49 @@
     <!-- Prayer Submitted Modal -->
     <div id="prayerSubmittedModal" class="modal">
         <div class="modal-content text-center">
-            <div class="text-green-500 text-6xl mb-4">
-                <i class="fas fa-check-circle"></i>
+            <div class="gold-gradient text-white text-6xl mb-4 rounded-full w-20 h-20 flex items-center justify-center mx-auto">
+                <i class="fas fa-check"></i>
             </div>
-            <h3 class="text-2xl font-bold text-gray-800 mb-4">Pedido Recebido!</h3>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Pedido Recebido com Sucesso!</h3>
             <p class="text-gray-600 mb-6">
                 Seu pedido foi enviado para energização e será incluído em nosso próximo ritual noturno. A gratidão acelera a manifestação!
             </p>
-            <button onclick="closeModal()" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">
+            <p class="text-sm text-gray-500 mb-6">
+                Você receberá um e-mail de confirmação com os detalhes do ritual em até 2 horas.
+            </p>
+            <button onclick="closeModal()" class="gold-gradient text-white px-6 py-2 rounded-lg hover:opacity-90 transition font-bold">
                 Fechar
             </button>
         </div>
     </div>
 
     <script>
+        // Countdown timer
+        function startCountdown() {
+            let minutes = 29;
+            let seconds = 59;
+            
+            const countdownElement = document.getElementById('countdown');
+            
+            const timer = setInterval(() => {
+                countdownElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (seconds === 0) {
+                    if (minutes === 0) {
+                        clearInterval(timer);
+                        // Reset or show expired message
+                        countdownElement.textContent = "00:00";
+                        document.querySelector('.urgency-badge').textContent = "OFERTA ENCERRADA";
+                        return;
+                    }
+                    minutes--;
+                    seconds = 59;
+                } else {
+                    seconds--;
+                }
+            }, 1000);
+        }
+        
         // Fake chat messages with bots
         const botNames = [
             "Camila Modeladora", 
@@ -346,7 +692,7 @@
             "Acabei de doar R$100 e recebi uma proposta de trabalho no mesmo valor! Incrível!",
             "Participem sem medo, funciona mesmo! Doei R$50 e ganhei R$500 em uma rifa!",
             "Estou impressionada! Doei ontem e hoje recebi um presente em dinheiro da minha tia!",
-            "Não acreditava muito, mas resolvi testar. Doei R$80 e consegui um desconto de R$300 no aluguel!",
+            "Não acreditava muito, mais resolvi testar. Doei R$80 e consegui um desconto de R$300 no aluguel!",
             "Minha vida financeira mudou completamente depois que entrei nesse círculo!",
             "Doação de R$200 retornou como aumento salarial! Vale cada centavo!",
             "Estou compartilhando com todos meus amigos! Funciona demais!",
@@ -473,34 +819,48 @@
         
         function closeModal() {
             document.getElementById('customAmountModal').style.display = 'none';
+            document.getElementById('donationContractModal').style.display = 'none';
             document.getElementById('prayerSubmittedModal').style.display = 'none';
         }
         
-        function processCustomAmount() {
-            const amount = document.getElementById('customAmount').value;
-            if (amount && !isNaN(amount) && amount > 0) {
-                closeModal();
-                document.getElementById('pixKey').textContent = 'artigosreligiosos@zohomail.com';
-                document.getElementById('pixSection').classList.remove('hidden');
-                window.scrollTo({
-                    top: document.getElementById('pixSection').offsetTop - 100,
-                    behavior: 'smooth'
-                });
-                
-                // Add to chat that user is donating
-                setTimeout(() => {
-                    addUserMessage("Você", `Acabei de doar R$${amount} para ativar meu fluxo de prosperidade!`);
-                    setTimeout(() => {
-                        addBotMessage("Camila Modeladora", `Parabéns! R$${amount} é uma ótima semente! Prepare-se para a colheita abundante!`);
-                    }, 1500);
-                }, 2000);
-            } else {
-                alert("Por favor, insira um valor válido maior que zero.");
-            }
+        function showDonationContract(amount) {
+            // Set the amount in the contract
+            document.getElementById('donationAmountPlaceholder').textContent = amount;
+            
+            // Set current date
+            const today = new Date();
+            document.getElementById('currentDatePlaceholder').textContent = today.toLocaleDateString('pt-BR');
+            
+            // Clear form fields
+            document.getElementById('donorName').value = '';
+            document.getElementById('donorCpf').value = '';
+            document.getElementById('donorBirthDate').value = '';
+            document.getElementById('acceptTerms').checked = false;
+            
+            // Show modal
+            document.getElementById('donationContractModal').style.display = 'flex';
         }
         
-        function showPix(amount) {
-            document.getElementById('pixKey').textContent = 'artigosreligiosos@zohomail.com';
+        function acceptDonationContract() {
+            const name = document.getElementById('donorName').value;
+            const birthDate = document.getElementById('donorBirthDate').value;
+            const acceptTerms = document.getElementById('acceptTerms').checked;
+            
+            if (!name || !birthDate) {
+                alert("Por favor, preencha seu nome completo e data de nascimento.");
+                return;
+            }
+            
+            if (!acceptTerms) {
+                alert("Por favor, leia e aceite os termos para continuar.");
+                return;
+            }
+            
+            // Close contract modal
+            closeModal();
+            
+            // Show PIX key
+            document.getElementById('pixKey').textContent = 'prosperidadeilimitada@zohomail.com';
             document.getElementById('pixSection').classList.remove('hidden');
             window.scrollTo({
                 top: document.getElementById('pixSection').offsetTop - 100,
@@ -509,11 +869,21 @@
             
             // Add to chat that user is donating
             setTimeout(() => {
-                addUserMessage("Você", `Acabei de doar R$${amount} para ativar meu fluxo de prosperidade!`);
+                addUserMessage("Você", "Acabei de aceitar o termo de doação e estou pronto para contribuir!");
                 setTimeout(() => {
-                    addBotMessage("Francisco Moderador", `Excelente escolha! R$${amount} já trouxe resultados incríveis para muitos participantes!`);
+                    addBotMessage("Camila Modeladora", "Que ótima decisão! O universo já está se movimentando a seu favor!");
                 }, 1500);
             }, 2000);
+        }
+        
+        function processCustomAmount() {
+            const amount = document.getElementById('customAmount').value;
+            if (amount && !isNaN(amount) && amount > 0) {
+                closeModal();
+                showDonationContract(amount);
+            } else {
+                alert("Por favor, insira um valor válido maior que zero.");
+            }
         }
         
         function copyPix() {
@@ -552,11 +922,12 @@
         let count = 3487;
         setInterval(() => {
             count += Math.floor(Math.random() * 3) + 1;
-            document.getElementById('participantCount').textContent = `Mais de ${count}`;
+            document.getElementById('participantCount').textContent = count;
         }, 5000);
         
-        // Initialize chat when page loads
+        // Initialize when page loads
         window.onload = function() {
+            startCountdown();
             initializeChat();
             
             // Allow pressing Enter in chat
