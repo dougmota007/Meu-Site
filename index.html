@@ -1,1466 +1,571 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuantumHack v7.0 - Advanced Cyber Operations Suite</title>
+    <title>Circulo de Prosperidade Universal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @font-face {
-            font-family: 'Fira Code';
-            src: url('https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css');
+        .gradient-bg {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
         }
-        
-        body {
-            font-family: 'Fira Code', monospace;
-            background-color: #0a0a0a;
-            color: #e0e0e0;
-            overflow: hidden;
-        }
-        
-        .panel {
-            background-color: rgba(15, 15, 15, 0.97);
-            border: 1px solid #252525;
-            box-shadow: 0 0 15px rgba(0, 150, 0, 0.15);
-        }
-        
-        .panel-header {
-            background: linear-gradient(to right, #151515, #202020);
-            border-bottom: 1px solid #303030;
-        }
-        
-        .terminal-text {
-            color: #00ffaa;
-            text-shadow: 0 0 5px rgba(0, 255, 170, 0.3);
-        }
-        
-        .cursor {
-            animation: blink 1s step-end infinite;
-        }
-        
-        @keyframes blink {
-            from, to { opacity: 1 }
-            50% { opacity: 0 }
-        }
-        
-        .node {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background-color: rgba(0, 255, 170, 0.6);
-            border-radius: 50%;
-            box-shadow: 0 0 8px rgba(0, 255, 170, 0.5);
-        }
-        
-        .connection {
-            position: absolute;
-            background: linear-gradient(to right, rgba(0, 255, 170, 0.1), rgba(0, 255, 170, 0.3), rgba(0, 255, 170, 0.1));
-            transform-origin: left center;
-        }
-        
-        .progress-bar {
-            background: linear-gradient(to right, #0a0a0a, #00aa77, #0a0a0a);
-            background-size: 200% 100%;
-            animation: progress 3s linear infinite;
-        }
-        
-        @keyframes progress {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-        
-        .hex-view {
-            background-color: rgba(0, 30, 20, 0.25);
-            font-size: 0.75em;
-            letter-spacing: 0.5px;
-        }
-        
-        .data-flow {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .data-flow::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100%;
-            background: linear-gradient(to bottom,
-                transparent 0%,
-                rgba(0, 255, 170, 0.05) 50%,
-                transparent 100%);
-            animation: data-flow 4s linear infinite;
-        }
-        
-        @keyframes data-flow {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100%); }
-        }
-        
-        .critical {
-            color: #ff5555;
-            text-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
-        }
-        
-        .warning {
-            color: #ffff55;
-        }
-        
-        .success {
-            color: #55ff55;
-        }
-        
-        .info {
-            color: #5555ff;
-        }
-        
-        .highlight {
-            color: #00ffaa;
-        }
-        
-        .hex-addr {
-            color: #8888ff;
-        }
-        
-        .hex-data {
-            color: #55ffaa;
-        }
-        
-        .hex-asc {
-            color: #ff55ff;
-        }
-        
-        .transaction {
-            color: #55ffff;
-        }
-        
-        .password {
-            color: #ffaa55;
-        }
-        
-        .bank {
-            color: #55ff55;
-        }
-        
-        .crypto {
-            color: #ff55ff;
-        }
-        
-        .exploit {
-            color: #ff5555;
-        }
-        
-        .scan {
-            color: #5555ff;
-        }
-        
-        .status {
-            color: #00ffaa;
-        }
-        
-        .tooltip {
-            position: absolute;
-            background: rgba(10, 20, 15, 0.9);
-            border: 1px solid #00aa77;
-            padding: 5px;
-            font-size: 0.8em;
-            pointer-events: none;
-            z-index: 100;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        
-        .grid-cell:hover .tooltip {
-            opacity: 1;
-        }
-        
-        .blink {
-            animation: blink-fast 0.5s step-end infinite;
-        }
-        
-        @keyframes blink-fast {
-            from, to { opacity: 1 }
-            50% { opacity: 0.5 }
-        }
-        
-        .unlock {
-            color: #55ffff;
-        }
-        
-        .receipt {
-            color: #ffaa55;
-        }
-        
-        .account {
-            color: #55ff55;
-        }
-        
-        .ai {
-            color: #ff55ff;
-        }
-        
         .pulse {
             animation: pulse 2s infinite;
         }
-        
         @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
-        
-        .matrix-bg {
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .modal {
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
-            opacity: 0.05;
-            background-image: 
-                linear-gradient(rgba(0, 255, 170, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 170, 0.1) 1px, transparent 1px);
-            background-size: 40px 40px;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+        }
+        .chat-message {
+            animation: fadeIn 0.3s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body>
-    <!-- Matrix Background -->
-    <div class="matrix-bg"></div>
-    
-    <!-- Main Grid Layout -->
-    <div class="grid grid-cols-1 lg:grid-cols-5 gap-1 p-1 h-screen">
-        <!-- Left Column - System Dashboard -->
-        <div class="lg:col-span-1 flex flex-col gap-1">
-            <!-- System Status -->
-            <div class="panel p-2">
-                <div class="panel-header p-2 mb-2 flex justify-between items-center">
-                    <span class="font-bold">QUANTUM AI SYSTEM</span>
-                    <span class="text-xs">[<span id="sys-time">00:00:00</span>]</span>
+<body class="gradient-bg font-sans">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-indigo-900 mb-4">Círculo de Prosperidade Universal</h1>
+            <p class="text-xl text-indigo-700">Junte-se ao movimento de energia financeira que está transformando vidas!</p>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="bg-white rounded-xl shadow-xl p-8 mb-12 text-center">
+            <div class="max-w-3xl mx-auto">
+                <div class="floating inline-block mb-6">
+                    <i class="fas fa-hand-holding-heart text-6xl text-pink-500"></i>
                 </div>
-                <div class="text-xs space-y-2">
-                    <div class="grid grid-cols-2 gap-2">
+                <h2 class="text-3xl font-bold text-indigo-900 mb-4">A Lei do Retorno em Ação</h2>
+                <p class="text-lg text-gray-700 mb-6">
+                    Você já percebeu como o universo retribui tudo que damos? Quando você doa com o coração, a prosperidade volta para você multiplicada. Faça parte deste círculo virtuoso e receba abundância em troca.
+                </p>
+                <div class="bg-yellow-100 border-l-4 border-yellow-500 p-4 mb-6 text-left">
+                    <p class="font-semibold text-yellow-800"><i class="fas fa-lightbulb mr-2"></i> <span id="participantCount">Mais de 3.487</span> pessoas já experimentaram o poder desta corrente e relataram mudanças financeiras impressionantes em menos de 7 dias!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center text-indigo-900 mb-8">Como Funciona a Energia da Prosperidade</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="text-4xl text-indigo-600 mb-4">1</div>
+                    <h3 class="text-xl font-semibold mb-3">Você Faz Sua Contribuição</h3>
+                    <p class="text-gray-600">Qualquer valor com intenção pura já ativa a lei do retorno. Quanto mais você doa, mais o universo entende que você está pronto para receber.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="text-4xl text-indigo-600 mb-4">2</div>
+                    <h3 class="text-xl font-semibold mb-3">Nós Ativamos a Corrente</h3>
+                    <p class="text-gray-600">Seu nome é incluído em nossos rituais de prosperidade e visualizações coletivas diárias por 7 dias consecutivos.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="text-4xl text-indigo-600 mb-4">3</div>
+                    <h3 class="text-xl font-semibold mb-3">A Energia Retorna</h3>
+                    <p class="text-gray-600">Em até 7 dias, a maioria dos participantes relata oportunidades inesperadas, presentes financeiros ou aumento na prosperidade.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center text-indigo-900 mb-8">Relatos Reais de Transformação</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-indigo-100 text-indigo-800 rounded-full w-12 h-12 flex items-center justify-center mr-3">
+                            <i class="fas fa-user"></i>
+                        </div>
                         <div>
-                            <div class="flex justify-between">
-                                <span>HOST:</span>
-                                <span class="highlight">quantum-ai-mainframe</span>
+                            <h4 class="font-semibold">Márcia R.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
                             </div>
-                            <div class="flex justify-between">
-                                <span>USER:</span>
-                                <span class="warning">root</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>SESSION:</span>
-                                <span class="status">#<span id="session-id">QH7F9A2C</span></span>
-                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Doei R$50 e no mesmo dia recebi uma ligação oferecendo um trabalho extra que me pagou R$800! Isso não pode ser coincidência."</p>
+                </div>
+                <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-indigo-100 text-indigo-800 rounded-full w-12 h-12 flex items-center justify-center mr-3">
+                            <i class="fas fa-user"></i>
                         </div>
                         <div>
-                            <div class="flex justify-between">
-                                <span>UPTIME:</span>
-                                <span><span id="uptime">00:00:00</span></span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>THREATS:</span>
-                                <span><span id="threat-level">0</span>/10</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>ENCRYPTION:</span>
-                                <span class="success">QUANTUM-AES-512</span>
+                            <h4 class="font-semibold">Carlos A.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="h-px bg-gray-700 my-1"></div>
-                    
-                    <div>
-                        <div class="flex justify-between">
-                            <span>AI LOAD:</span>
-                            <span><span id="cpu-load">0</span>%</span>
+                    <p class="text-gray-600 italic">"Estava desempregado há meses. Participei do círculo e em 3 dias recebi uma proposta de emprego com salário 30% maior que o anterior!"</p>
+                </div>
+                <div class="testimonial-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-indigo-100 text-indigo-800 rounded-full w-12 h-12 flex items-center justify-center mr-3">
+                            <i class="fas fa-user"></i>
                         </div>
-                        <div class="w-full bg-black h-2 mt-1">
-                            <div id="cpu-bar" class="h-full progress-bar" style="width: 0%"></div>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <div class="flex justify-between">
-                            <span>MEMORY:</span>
-                            <span><span id="mem-usage">0</span>/<span id="mem-total">128</span>GB</span>
-                        </div>
-                        <div class="w-full bg-black h-2 mt-1">
-                            <div id="mem-bar" class="h-full progress-bar" style="width: 0%"></div>
+                        <div>
+                            <h4 class="font-semibold">Fernanda L.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div>
-                        <div class="flex justify-between">
-                            <span>NETWORK:</span>
-                            <span><span id="net-speed">0</span> Gbps</span>
-                        </div>
-                        <div class="w-full bg-black h-2 mt-1">
-                            <div id="net-bar" class="h-full progress-bar" style="width: 0%"></div>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <div class="flex justify-between">
-                            <span>ACTIVE OPS:</span>
-                            <span><span id="active-ops">0</span>/500</span>
-                        </div>
-                        <div class="w-full bg-black h-2 mt-1">
-                            <div id="ops-bar" class="h-full progress-bar" style="width: 0%"></div>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <div class="flex justify-between">
-                            <span>AI CORES:</span>
-                            <span><span id="ai-cores">256</span></span>
-                        </div>
-                        <div class="w-full bg-black h-2 mt-1">
-                            <div id="ai-bar" class="h-full progress-bar" style="width: 100%"></div>
-                        </div>
-                    </div>
+                    <p class="text-gray-600 italic">"Doação de R$100 retornou como um desconto inesperado no meu financiamento que me economizou R$1.200. A energia funciona mesmo!"</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Participation Section -->
+        <section class="bg-white rounded-xl shadow-xl p-8 mb-12 max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-indigo-900 mb-6">Pronto para Ativar Seu Fluxo de Prosperidade?</h2>
+            <p class="text-lg text-gray-700 mb-6">
+                O universo está esperando seu movimento para começar a enviar abundância. Quanto mais você demonstrar confiança na lei do retorno, mais impressionantes serão os resultados.
+            </p>
+            
+            <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-8 text-left">
+                <p class="font-semibold text-green-800"><i class="fas fa-bolt mr-2"></i> Escolha o valor da sua semente de prosperidade:</p>
+                <div class="grid grid-cols-3 gap-4 mt-4">
+                    <button onclick="showPix('50')" class="bg-white border-2 border-green-300 rounded-lg py-2 font-medium hover:bg-green-100 transition">R$ 50</button>
+                    <button onclick="showPix('100')" class="bg-white border-2 border-green-300 rounded-lg py-2 font-medium hover:bg-green-100 transition">R$ 100</button>
+                    <button onclick="showPix('200')" class="bg-white border-2 border-green-300 rounded-lg py-2 font-medium hover:bg-green-100 transition">R$ 200</button>
+                </div>
+                <div class="mt-4">
+                    <button onclick="showCustomAmountModal()" class="text-green-700 underline font-medium">Outro valor</button>
+                </div>
+            </div>
+
+            <div id="pixSection" class="hidden bg-indigo-50 rounded-lg p-6 mb-6">
+                <h3 class="text-xl font-semibold text-indigo-800 mb-4">Sua Chave PIX para Ativar a Prosperidade</h3>
+                <div class="bg-white p-4 rounded-lg mb-4">
+                    <p id="pixKey" class="font-mono text-lg break-all"></p>
+                </div>
+                <button onclick="copyPix()" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">
+                    <i class="fas fa-copy mr-2"></i> Copiar Chave
+                </button>
+                <p class="text-sm text-indigo-700 mt-4">Após o pagamento, seu nome será incluído imediatamente em nossa corrente energética.</p>
+            </div>
+
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 text-left">
+                <p class="font-semibold text-blue-800"><i class="fas fa-lock mr-2"></i> Sua participação é 100% segura. Todos os dados são protegidos e seu nome será usado apenas nos rituais de prosperidade.</p>
+            </div>
+        </section>
+
+        <!-- Live Chat Section -->
+        <section class="bg-white rounded-xl shadow-xl p-6 mb-12 max-w-4xl mx-auto">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-2xl font-bold text-indigo-900">Chat ao Vivo da Prosperidade</h2>
+                <div class="flex items-center bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
+                    <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                    <span id="onlineCount">247</span> pessoas online
                 </div>
             </div>
             
-            <!-- Quick Actions -->
-            <div class="panel p-2">
-                <div class="panel-header p-2 mb-2">
-                    <span class="font-bold">AI COMMANDS</span>
-                </div>
-                <div class="grid grid-cols-3 gap-1 text-xs">
-                    <button class="p-1 bg-gray-800 hover:bg-gray-700" onclick="executeAutoSequence()">AUTO SEQ</button>
-                    <button class="p-1 bg-gray-800 hover:bg-gray-700" onclick="stopAllOperations()">STOP ALL</button>
-                    <button class="p-1 bg-gray-800 hover:bg-gray-700" onclick="randomizeOperations()">RANDOMIZE</button>
-                    <button class="p-1 bg-red-900 hover:bg-red-800" onclick="executeMassBankHack()">MASS BANK</button>
-                    <button class="p-1 bg-purple-900 hover:bg-purple-800" onclick="executeCryptoSteal()">CRYPTO</button>
-                    <button class="p-1 bg-blue-900 hover:bg-blue-800" onclick="executePasswordCrack()">PASS CRACK</button>
-                    <button class="p-1 bg-green-900 hover:bg-green-800" onclick="executeAccountUnlock()">UNLOCK</button>
-                    <button class="p-1 bg-yellow-900 hover:bg-yellow-800" onclick="generateReceipts()">RECEIPTS</button>
-                    <button class="p-1 bg-pink-900 hover:bg-pink-800" onclick="executeAIAssault()">AI ASSAULT</button>
-                </div>
+            <div class="border rounded-lg h-64 overflow-y-auto p-4 mb-4 bg-gray-50" id="chatContainer">
+                <!-- Chat messages will be added here by JavaScript -->
             </div>
             
-            <!-- Active Operations -->
-            <div class="panel p-2 flex-1 overflow-hidden">
-                <div class="panel-header p-2 mb-2">
-                    <span class="font-bold">AI OPERATIONS (<span id="ops-count">0</span>)</span>
+            <div class="flex">
+                <input type="text" id="chatInput" placeholder="Digite sua mensagem..." class="flex-grow border rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <button onclick="sendMessage()" class="bg-indigo-600 text-white px-4 py-2 rounded-r-lg hover:bg-indigo-700 transition">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Prayer Requests -->
+        <section class="bg-white rounded-xl shadow-xl p-8 mb-12 max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold text-center text-indigo-900 mb-6">Pedidos de Energização</h2>
+            <p class="text-lg text-gray-700 mb-6 text-center">
+                Envie seu pedido especial para ser incluído em nossos rituais noturnos de prosperidade.
+            </p>
+            
+            <form id="prayerForm" class="space-y-4">
+                <div>
+                    <label for="name" class="block text-gray-700 mb-2">Seu Nome (opcional)</label>
+                    <input type="text" id="name" class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                 </div>
-                <div class="text-xs h-full overflow-y-auto data-flow" id="operations-list">
-                    <!-- Operations will be added here -->
+                
+                <div>
+                    <label for="prayer" class="block text-gray-700 mb-2">Seu Pedido</label>
+                    <textarea id="prayer" rows="4" class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Escreva aqui o que deseja manifestar..."></textarea>
+                </div>
+                
+                <div class="pt-2">
+                    <button type="button" onclick="submitPrayer()" class="w-full bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition font-medium">
+                        <i class="fas fa-praying-hands mr-2"></i> Enviar Pedido para Energização
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- FAQ -->
+        <section class="mb-12 max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold text-center text-indigo-900 mb-8">Perguntas Frequentes</h2>
+            <div class="space-y-4">
+                <div class="bg-white p-5 rounded-lg shadow">
+                    <h3 class="font-semibold text-lg mb-2">Quanto tempo leva para ver resultados?</h3>
+                    <p class="text-gray-600">A maioria dos participantes relata algum movimento financeiro positivo em até 7 dias. Alguns veem resultados no mesmo dia!</p>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow">
+                    <h3 class="font-semibold text-lg mb-2">Preciso acreditar para funcionar?</h3>
+                    <p class="text-gray-600">A energia da prosperidade funciona independente da crença, assim como a gravidade. Mas sua intenção positiva potencializa os efeitos.</p>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow">
+                    <h3 class="font-semibold text-lg mb-2">Posso participar mais de uma vez?</h3>
+                    <p class="text-gray-600">Sim! Muitos participantes retornam mensalmente para manter seu fluxo de prosperidade ativado e relatam resultados cada vez melhores.</p>
                 </div>
             </div>
-        </div>
-        
-        <!-- Main Column - Operations Dashboard -->
-        <div class="lg:col-span-3 flex flex-col gap-1">
-            <!-- Main Terminal -->
-            <div class="panel p-2 flex-1 flex flex-col">
-                <div class="panel-header p-2 mb-2 flex justify-between items-center">
-                    <span class="font-bold">QUANTUM AI TERMINAL</span>
-                    <span class="text-xs">[<span id="terminal-mode">AUTO-EXEC</span>]</span>
-                </div>
-                <div class="flex-1 overflow-y-auto text-xs mb-2 font-mono" id="terminal-output">
-                    <!-- Terminal output will be added here -->
-                </div>
-                <div class="border-t border-gray-700 pt-1 flex items-center">
-                    <span class="mr-2">root@quantum-ai:~#</span>
-                    <span id="terminal-input" class="terminal-text flex-1 cursor">_</span>
-                </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="text-center mb-12">
+            <div class="pulse inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xl font-bold px-8 py-4 rounded-full shadow-lg mb-6">
+                O Universo Está Esperando Seu Movimento!
+            </div>
+            <p class="text-lg text-gray-700 max-w-2xl mx-auto">
+                Não adie sua prosperidade. Quanto mais rápido você ativar seu fluxo, mais rápido os milagres financeiros começarão a acontecer em sua vida.
+            </p>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center text-gray-600 text-sm">
+            <p>Círculo de Prosperidade Universal © 2023 - Todos os direitos reservados</p>
+            <p class="mt-2">Este é um movimento energético e não oferecemos garantias financeiras. Resultados podem variar de acordo com a abertura de cada participante à prosperidade.</p>
+        </footer>
+    </div>
+
+    <!-- Custom Amount Modal -->
+    <div id="customAmountModal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-indigo-900">Digite o valor da sua contribuição</h3>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
             
-            <!-- Operations Grid -->
-            <div class="panel p-2">
-                <div class="panel-header p-2 mb-2 flex justify-between items-center">
-                    <span class="font-bold">AI OPERATIONS MATRIX (<span id="matrix-count">0</span>/500 ACTIVE)</span>
-                    <span class="text-xs">[<span id="matrix-status">SYNCED</span>]</span>
-                </div>
-                <div class="grid grid-cols-10 gap-1 text-xxs" id="operations-grid">
-                    <!-- 500 operation cells will be added here -->
-                </div>
-            </div>
-        </div>
-        
-        <!-- Right Column - Data Viewers -->
-        <div class="lg:col-span-1 flex flex-col gap-1">
-            <!-- Financial Transactions -->
-            <div class="panel p-2 flex-1 overflow-hidden">
-                <div class="panel-header p-2 mb-2">
-                    <span class="font-bold">FINANCIAL TRANSACTIONS</span>
-                </div>
-                <div class="text-xs h-full overflow-y-auto data-flow" id="transactions-list">
-                    <!-- Transactions will be added here -->
-                </div>
+            <div class="mb-4">
+                <label for="customAmount" class="block text-gray-700 mb-2">Valor em R$</label>
+                <input type="number" id="customAmount" class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Ex: 150">
             </div>
             
-            <!-- Account Unlocks -->
-            <div class="panel p-2 flex-1 overflow-hidden">
-                <div class="panel-header p-2 mb-2">
-                    <span class="font-bold">ACCOUNT UNLOCKS</span>
-                </div>
-                <div class="text-xs h-full overflow-y-auto data-flow" id="unlocks-list">
-                    <!-- Unlocks will be added here -->
-                </div>
-            </div>
-            
-            <!-- Receipts -->
-            <div class="panel p-2 h-1/3 overflow-hidden">
-                <div class="panel-header p-2 mb-2">
-                    <span class="font-bold">PIX RECEIPTS</span>
-                </div>
-                <div class="text-xs h-full overflow-y-auto data-flow" id="receipts-list">
-                    <!-- Receipts will be added here -->
-                </div>
-            </div>
+            <button onclick="processCustomAmount()" class="w-full bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition font-medium">
+                Confirmar e Mostrar Chave PIX
+            </button>
         </div>
     </div>
-    
-    <!-- Network Visualization (Background) -->
-    <div id="network-visualization" class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <!-- Network nodes and connections will be added here -->
+
+    <!-- Prayer Submitted Modal -->
+    <div id="prayerSubmittedModal" class="modal">
+        <div class="modal-content text-center">
+            <div class="text-green-500 text-6xl mb-4">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Pedido Recebido!</h3>
+            <p class="text-gray-600 mb-6">
+                Seu pedido foi enviado para energização e será incluído em nosso próximo ritual noturno. A gratidão acelera a manifestação!
+            </p>
+            <button onclick="closeModal()" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">
+                Fechar
+            </button>
+        </div>
     </div>
-    
-    <!-- Tooltip Element -->
-    <div id="tooltip" class="tooltip"></div>
-    
-    <!-- AI Core Visualization -->
-    <div id="ai-visualization" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
 
     <script>
-        // System Configuration
-        const OPERATION_TYPES = [
-            { name: "BANK_TRANSFER", color: "bank", icon: "fa-money-bill-transfer" },
-            { name: "CRYPTO_TRANSFER", color: "crypto", icon: "fa-bitcoin-sign" },
-            { name: "PASSWORD_CRACK", color: "password", icon: "fa-key" },
-            { name: "EXPLOIT_EXEC", color: "exploit", icon: "fa-bug" },
-            { name: "NETWORK_SCAN", color: "scan", icon: "fa-network-wired" },
-            { name: "DATA_EXFIL", color: "info", icon: "fa-file-export" },
-            { name: "LOG_CLEANUP", color: "warning", icon: "fa-broom" },
-            { name: "BACKDOOR_INSTALL", color: "critical", icon: "fa-door-open" },
-            { name: "PRIVILEGE_ESCALATE", color: "exploit", icon: "fa-user-shield" },
-            { name: "SURVEILLANCE", color: "scan", icon: "fa-eye" },
-            { name: "ACCOUNT_UNLOCK", color: "unlock", icon: "fa-unlock" },
-            { name: "RECEIPT_GEN", color: "receipt", icon: "fa-receipt" },
-            { name: "AI_ASSAULT", color: "ai", icon: "fa-robot" },
-            { name: "DEEP_SCAN", color: "scan", icon: "fa-radar" },
-            { name: "SOCIAL_ENG", color: "info", icon: "fa-user-ninja" }
+        // Fake chat messages with bots
+        const botNames = [
+            "Camila Modeladora", 
+            "Francisco Moderador", 
+            "Ana Prospera", 
+            "João Abundante", 
+            "Maria da Sorte",
+            "Carlos Magnético",
+            "Luiza Manifesta",
+            "Ricardo Riqueza"
         ];
-
-        const BANK_NAMES = [
-            "Bank of America", "Chase", "Wells Fargo", "HSBC", "Barclays", 
-            "Santander", "Citibank", "Deutsche Bank", "BNP Paribas", "UBS",
-            "Banco do Brasil", "Caixa Econômica", "Itaú", "Bradesco", "Santander BR",
-            "Nubank", "Inter", "BTG Pactual", "Safra", "Banrisul"
+        
+        const userNames = [
+            "Marcos", "Patricia", "Roberta", "Felipe", "Larissa", 
+            "Gustavo", "Amanda", "Rodrigo", "Tatiana", "Eduardo"
         ];
-
-        const CRYPTO_TYPES = [
-            "Bitcoin", "Ethereum", "Ripple", "Litecoin", "Monero", 
-            "Cardano", "Polkadot", "Solana", "Avalanche", "Tether",
-            "Dogecoin", "Shiba Inu", "Polygon", "Chainlink", "Uniswap"
+        
+        const positiveMessages = [
+            "Acabei de doar R$100 e recebi uma proposta de trabalho no mesmo valor! Incrível!",
+            "Participem sem medo, funciona mesmo! Doei R$50 e ganhei R$500 em uma rifa!",
+            "Estou impressionada! Doei ontem e hoje recebi um presente em dinheiro da minha tia!",
+            "Não acreditava muito, mas resolvi testar. Doei R$80 e consegui um desconto de R$300 no aluguel!",
+            "Minha vida financeira mudou completamente depois que entrei nesse círculo!",
+            "Doação de R$200 retornou como aumento salarial! Vale cada centavo!",
+            "Estou compartilhando com todos meus amigos! Funciona demais!",
+            "Meu marido não acreditava, mas depois que doamos juntos, ele recebeu uma promoção!",
+            "Gratidão por esse círculo abençoado! Minha vida mudou em 3 dias!",
+            "Estou fazendo minha segunda doação porque os resultados foram impressionantes!"
         ];
-
-        const ACCOUNT_TYPES = [
-            "Bank Account", "Email", "Social Media", "Crypto Wallet", "Government",
-            "Corporate", "Cloud Storage", "VPN", "Gaming", "E-commerce"
+        
+        const botMessages = [
+            "Lembre-se que quanto maior sua doação, maior será o retorno energético!",
+            "Estamos vendo resultados incríveis com doações acima de R$200!",
+            "A energia está muito forte hoje! Perfeito para fazer sua contribuição!",
+            "Quem doa com o coração aberto recebe em dobro! Já comprovamos isso 387 vezes!",
+            "Nosso ritual noturno vai energizar especialmente quem doar hoje!",
+            "Aproveitem essa janela cósmica para ativar seu fluxo de prosperidade!",
+            "Quem doa R$100 ou mais está tendo retornos acima de 5x o valor!",
+            "Estamos com uma corrente de gratidão coletiva hoje! Participem!"
         ];
-
-        const COUNTRIES = [
-            "USA", "Brazil", "UK", "Germany", "France", 
-            "Japan", "China", "Russia", "India", "Canada",
-            "Australia", "Mexico", "Italy", "Spain", "Portugal"
-        ];
-
-        // System State
-        let systemStartTime = new Date();
-        let activeOperations = [];
-        let terminalHistory = [];
-        let transactions = [];
-        let crackedPasswords = [];
-        let accountUnlocks = [];
-        let receipts = [];
-        let memoryData = [];
-        let autoModeInterval;
-        let threatLevel = 0;
-        let aiCoresActive = 256;
-
-        // DOM Elements
-        const terminalOutput = document.getElementById('terminal-output');
-        const terminalInput = document.getElementById('terminal-input');
-        const operationsList = document.getElementById('operations-list');
-        const operationsGrid = document.getElementById('operations-grid');
-        const transactionsList = document.getElementById('transactions-list');
-        const unlocksList = document.getElementById('unlocks-list');
-        const receiptsList = document.getElementById('receipts-list');
-        const memoryViewer = document.getElementById('memory-viewer');
-        const sysTimeEl = document.getElementById('sys-time');
-        const sessionIdEl = document.getElementById('session-id');
-        const uptimeEl = document.getElementById('uptime');
-        const cpuLoadEl = document.getElementById('cpu-load');
-        const cpuBarEl = document.getElementById('cpu-bar');
-        const memUsageEl = document.getElementById('mem-usage');
-        const memTotalEl = document.getElementById('mem-total');
-        const memBarEl = document.getElementById('mem-bar');
-        const netSpeedEl = document.getElementById('net-speed');
-        const netBarEl = document.getElementById('net-bar');
-        const opsCountEl = document.getElementById('ops-count');
-        const matrixCountEl = document.getElementById('matrix-count');
-        const opsBarEl = document.getElementById('ops-bar');
-        const activeOpsEl = document.getElementById('active-ops');
-        const threatLevelEl = document.getElementById('threat-level');
-        const networkVisualization = document.getElementById('network-visualization');
-        const aiVisualization = document.getElementById('ai-visualization');
-        const tooltip = document.getElementById('tooltip');
-
-        // Initialize system
-        document.addEventListener('DOMContentLoaded', function() {
-            // Set session ID
-            sessionIdEl.textContent = generateSessionId();
+        
+        // Initialize chat with some messages
+        function initializeChat() {
+            const chatContainer = document.getElementById('chatContainer');
             
-            // Initialize clock
-            updateClock();
-            setInterval(updateClock, 1000);
+            // Add some initial bot messages
+            addBotMessage("Francisco Moderador", "Bem-vindos ao Chat da Prosperidade! Por favor, mantenham o respeito e compartilhem suas experiências positivas!");
+            addBotMessage("Camila Modeladora", "Estamos aqui para ajudar! Lembrem-se que a energia da doação retorna multiplicada!");
             
-            // Initialize uptime
-            updateUptime();
-            setInterval(updateUptime, 1000);
+            // Add some user testimonials
+            setTimeout(() => {
+                addUserMessage(userNames[0], positiveMessages[0]);
+            }, 1500);
             
-            // Initialize system monitors
-            updateSystemStats();
-            setInterval(updateSystemStats, 2000);
+            setTimeout(() => {
+                addUserMessage(userNames[1], positiveMessages[1]);
+            }, 3000);
             
-            // Initialize terminal
-            initializeTerminal();
+            setTimeout(() => {
+                addBotMessage(botNames[2], botMessages[0]);
+            }, 4500);
             
-            // Initialize operations grid (500 cells)
-            initializeOperationsGrid();
-            
-            // Initialize memory viewer
-            initializeMemoryViewer();
-            
-            // Initialize network visualization
-            initializeNetworkVisualization();
-            
-            // Initialize AI visualization
-            initializeAIVisualization();
-            
-            // Start auto mode
-            startAutoMode();
-            
-            // Initialize tooltips
-            initializeTooltips();
-        });
-
-        // System Functions
-        function generateSessionId() {
-            return Math.random().toString(16).substring(2, 10).toUpperCase();
-        }
-
-        function updateClock() {
-            const now = new Date();
-            sysTimeEl.textContent = now.toLocaleTimeString();
-        }
-
-        function updateUptime() {
-            const now = new Date();
-            const diff = now - systemStartTime;
-            const hours = Math.floor(diff / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            uptimeEl.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        }
-
-        function updateSystemStats() {
-            // Calculate based on active operations
-            const baseLoad = Math.min(30 + activeOperations.length * 2, 95);
-            
-            // CPU usage
-            const cpuUsage = Math.floor(baseLoad + Math.random() * 5);
-            cpuLoadEl.textContent = cpuUsage;
-            cpuBarEl.style.width = `${cpuUsage}%`;
-            
-            // Memory usage (32-120GB)
-            const memUsage = Math.floor(32 + activeOperations.length * 0.2 + Math.random() * 5);
-            memUsageEl.textContent = memUsage;
-            memBarEl.style.width = `${(memUsage / 128) * 100}%`;
-            
-            // Network speed (1-10 Gbps)
-            const netSpeed = (1 + activeOperations.length * 0.02 + Math.random() * 0.5).toFixed(2);
-            netSpeedEl.textContent = netSpeed;
-            netBarEl.style.width = `${(netSpeed / 10) * 100}%`;
-            
-            // Active operations
-            activeOpsEl.textContent = activeOperations.length;
-            opsCountEl.textContent = activeOperations.length;
-            matrixCountEl.textContent = activeOperations.length;
-            opsBarEl.style.width = `${(activeOperations.length / 500) * 100}%`;
-            
-            // Threat level (0-10)
-            threatLevel = Math.min(10, Math.floor(activeOperations.filter(op => 
-                op.type === 'EXPLOIT_EXEC' || op.type === 'BANK_TRANSFER' || 
-                op.type === 'CRYPTO_TRANSFER' || op.type === 'AI_ASSAULT').length / 5));
-            threatLevelEl.textContent = threatLevel;
-        }
-
-        function initializeTerminal() {
-            // Initial terminal output
-            addTerminalLine('Initializing QuantumHack AI v7.0...', 'info');
-            addTerminalLine('Loading quantum neural networks...', 'info');
-            addTerminalLine('Activating 256 AI cores...', 'info');
-            addTerminalLine('Establishing darknet connections...', 'info');
-            addTerminalLine('Bypassing quantum encryption...', 'warning');
-            addTerminalLine('AI neural network fully operational...', 'success');
-            addTerminalLine('All systems ready. Autonomous operations engaged.', 'highlight');
-            
-            // Simulate terminal input
+            // Keep adding messages periodically
             setInterval(() => {
-                const cursor = terminalInput.textContent.endsWith('_') 
-                    ? terminalInput.textContent.slice(0, -1) 
-                    : terminalInput.textContent + '_';
-                terminalInput.textContent = cursor;
-            }, 500);
+                if (Math.random() > 0.3) { // 70% chance of user message
+                    const randomUser = userNames[Math.floor(Math.random() * userNames.length)];
+                    const randomMessage = positiveMessages[Math.floor(Math.random() * positiveMessages.length)];
+                    addUserMessage(randomUser, randomMessage);
+                } else { // 30% chance of bot message
+                    const randomBot = botNames[Math.floor(Math.random() * botNames.length)];
+                    const randomMessage = botMessages[Math.floor(Math.random() * botMessages.length)];
+                    addBotMessage(randomBot, randomMessage);
+                }
+                
+                // Randomly increase online count
+                const onlineCount = document.getElementById('onlineCount');
+                let count = parseInt(onlineCount.textContent);
+                count += Math.floor(Math.random() * 3) + 1;
+                onlineCount.textContent = count;
+            }, 5000);
         }
-
-        function addTerminalLine(text, type = 'info') {
-            const now = new Date();
-            const timeStr = now.toLocaleTimeString();
-            
-            const line = document.createElement('div');
-            line.className = `pl-1 mb-1 ${type}`;
-            line.innerHTML = `[${timeStr}] ${text}`;
-            terminalOutput.appendChild(line);
-            
-            // Keep terminal scroll at bottom
-            terminalOutput.scrollTop = terminalOutput.scrollHeight;
-            
-            // Keep only last 200 lines
-            if (terminalOutput.children.length > 200) {
-                terminalOutput.removeChild(terminalOutput.children[0]);
-            }
-        }
-
-        function initializeOperationsGrid() {
-            // Create 500 operation cells (10x50 grid)
-            for (let i = 0; i < 500; i++) {
-                const cell = document.createElement('div');
-                cell.className = 'grid-cell p-0.5 border border-gray-800 relative';
-                cell.id = `op-cell-${i}`;
-                cell.innerHTML = `
-                    <div class="flex justify-between items-center">
-                        <span class="op-icon text-xxxs"></span>
-                        <span class="op-status text-xxxxs"></span>
+        
+        function addUserMessage(name, message) {
+            const chatContainer = document.getElementById('chatContainer');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat-message mb-3';
+            messageDiv.innerHTML = `
+                <div class="flex items-start">
+                    <div class="bg-blue-100 text-blue-800 rounded-full w-8 h-8 flex items-center justify-center mr-2 text-sm font-bold">
+                        ${name.charAt(0)}
                     </div>
-                    <div class="op-progress h-0.5 mt-0.5 bg-black">
-                        <div class="h-full progress-bar"></div>
+                    <div class="flex-1">
+                        <div class="font-semibold text-blue-800">${name}</div>
+                        <div class="text-gray-700 bg-white p-2 rounded-lg inline-block">${message}</div>
                     </div>
-                    <div class="tooltip"></div>
-                `;
-                operationsGrid.appendChild(cell);
-            }
-        }
-
-        function startAutoMode() {
-            // Clear any existing interval
-            if (autoModeInterval) clearInterval(autoModeInterval);
-            
-            // Start new auto mode
-            autoModeInterval = setInterval(() => {
-                // Randomly add or remove operations
-                if (activeOperations.length < 500 && Math.random() > 0.3) {
-                    addRandomOperation();
-                } else if (activeOperations.length > 50 && Math.random() > 0.7) {
-                    completeRandomOperation();
-                }
-                
-                // Update all operations
-                updateAllOperations();
-                
-                // Randomly add transactions
-                if (Math.random() > 0.5) {
-                    addRandomTransaction();
-                }
-                
-                // Randomly add cracked passwords
-                if (Math.random() > 0.6) {
-                    addRandomPassword();
-                }
-                
-                // Randomly add account unlocks
-                if (Math.random() > 0.7) {
-                    addRandomAccountUnlock();
-                }
-                
-                // Randomly add receipts
-                if (Math.random() > 0.8) {
-                    addRandomReceipt();
-                }
-                
-            }, 500); // Faster updates for more activity
-            
-            // Initial operations (100-150)
-            const initialOps = Math.floor(Math.random() * 50) + 100;
-            for (let i = 0; i < initialOps; i++) {
-                addRandomOperation();
-            }
-            
-            addTerminalLine('AI autonomous mode engaged. Running 500 parallel operations.', 'highlight');
-        }
-
-        function addRandomOperation() {
-            if (activeOperations.length >= 500) return;
-            
-            const opType = OPERATION_TYPES[Math.floor(Math.random() * OPERATION_TYPES.length)];
-            const opId = generateOpId();
-            const duration = Math.floor(Math.random() * 10000) + 3000; // Faster operations
-            const startTime = Date.now();
-            const endTime = startTime + duration;
-            
-            const operation = {
-                id: opId,
-                type: opType.name,
-                startTime,
-                endTime,
-                progress: 0,
-                status: 'RUNNING',
-                details: generateOperationDetails(opType.name)
-            };
-            
-            activeOperations.push(operation);
-            updateOperationDisplay(operation);
-            
-            // Add to operations list
-            addOperationToList(operation);
-            
-            // Add terminal log
-            addTerminalLine(`AI started ${formatOpType(opType.name)} operation: ${operation.details}`, 'info');
-        }
-
-        function generateOpId() {
-            return 'OP-' + Math.random().toString(16).substring(2, 8).toUpperCase();
-        }
-
-        function generateOperationDetails(type) {
-            switch(type) {
-                case 'BANK_TRANSFER':
-                    const bank = BANK_NAMES[Math.floor(Math.random() * BANK_NAMES.length)];
-                    const amount = (Math.random() * 100000 + 5000).toFixed(2);
-                    const account = Math.random().toString().substring(2, 12);
-                    return `Transfer $${amount} from ${bank} (Acc: ${account})`;
-                
-                case 'CRYPTO_TRANSFER':
-                    const crypto = CRYPTO_TYPES[Math.floor(Math.random() * CRYPTO_TYPES.length)];
-                    const cryptoAmount = (Math.random() * 50 + 0.5).toFixed(4);
-                    const wallet = '0x' + Math.random().toString(16).substring(2, 10) + '...' + Math.random().toString(16).substring(2, 6);
-                    return `Transfer ${cryptoAmount} ${crypto} to ${wallet}`;
-                
-                case 'PASSWORD_CRACK':
-                    const services = ['Gmail', 'Facebook', 'Twitter', 'Instagram', 'LinkedIn', 'Bank', 'Netflix', 'Amazon', 'PayPal', 'eBay'];
-                    const service = services[Math.floor(Math.random() * services.length)];
-                    const users = ['admin', 'root', 'user', 'john', 'jane', 'mike', 'alice', 'bob', 'charlie', 'dave'];
-                    const user = users[Math.floor(Math.random() * users.length)] + Math.floor(Math.random() * 100);
-                    return `Crack ${service} password for ${user}@${service.toLowerCase()}.com`;
-                
-                case 'EXPLOIT_EXEC':
-                    const exploits = ['CVE-2023-32456', 'CVE-2023-29876', 'CVE-2023-21554', 'CVE-2023-12345', 'CVE-2023-67890'];
-                    const exploit = exploits[Math.floor(Math.random() * exploits.length)];
-                    const target = `10.${Math.floor(Math.random() * 254)+1}.${Math.floor(Math.random() * 254)+1}.${Math.floor(Math.random() * 254)+1}`;
-                    return `Execute ${exploit} on ${target}`;
-                
-                case 'NETWORK_SCAN':
-                    const subnet = `192.168.${Math.floor(Math.random() * 254)+1}.0/24`;
-                    return `Scan network ${subnet}`;
-                
-                case 'DATA_EXFIL':
-                    const dataTypes = ['documents', 'emails', 'database', 'config', 'source code', 'financial records', 'user data'];
-                    const dataType = dataTypes[Math.floor(Math.random() * dataTypes.length)];
-                    const targetOrg = ['Google', 'Microsoft', 'Amazon', 'Facebook', 'Twitter', 'Bank Corp', 'Tech Inc'][Math.floor(Math.random() * 7)];
-                    return `Exfiltrate ${dataType} from ${targetOrg}`;
-                
-                case 'LOG_CLEANUP':
-                    return `Clean logs on ${Math.random() > 0.5 ? 'local' : 'remote'} system`;
-                
-                case 'BACKDOOR_INSTALL':
-                    const osTypes = ['Windows', 'Linux', 'macOS', 'Android', 'iOS'];
-                    const osType = osTypes[Math.floor(Math.random() * osTypes.length)];
-                    return `Install backdoor on ${osType} target`;
-                
-                case 'PRIVILEGE_ESCALATE':
-                    return `Escalate privileges on ${['Windows', 'Linux', 'macOS'][Math.floor(Math.random() * 3)]} system`;
-                
-                case 'SURVEILLANCE':
-                    return `Monitor network traffic for keywords`;
-                
-                case 'ACCOUNT_UNLOCK':
-                    const accType = ACCOUNT_TYPES[Math.floor(Math.random() * ACCOUNT_TYPES.length)];
-                    const accId = Math.random().toString().substring(2, 10);
-                    return `Unlock ${accType} (ID: ${accId})`;
-                
-                case 'RECEIPT_GEN':
-                    const receiptAmount = (Math.random() * 5000 + 100).toFixed(2);
-                    return `Generate PIX receipt for R$${receiptAmount}`;
-                
-                case 'AI_ASSAULT':
-                    const aiTargets = ['Bank System', 'Government DB', 'Corporate Network', 'Cloud Provider', 'Crypto Exchange'];
-                    const aiTarget = aiTargets[Math.floor(Math.random() * aiTargets.length)];
-                    return `AI assault on ${aiTarget}`;
-                
-                case 'DEEP_SCAN':
-                    return `Deep scan ${['financial', 'government', 'corporate', 'medical', 'defense'][Math.floor(Math.random() * 5)]} network`;
-                
-                case 'SOCIAL_ENG':
-                    const socialTargets = ['CEO', 'CFO', 'SysAdmin', 'Developer', 'Support'];
-                    const socialTarget = socialTargets[Math.floor(Math.random() * socialTargets.length)];
-                    return `Social engineering attack on ${socialTarget}`;
-                
-                default:
-                    return `Operation ${type}`;
-            }
-        }
-
-        function formatOpType(type) {
-            return type.toLowerCase().replace(/_/g, ' ');
-        }
-
-        function addOperationToList(operation) {
-            const opType = OPERATION_TYPES.find(t => t.name === operation.type);
-            
-            const item = document.createElement('div');
-            item.className = `p-1 border-b border-gray-800 last:border-0 ${opType.color}`;
-            item.id = `op-list-${operation.id}`;
-            item.innerHTML = `
-                <div class="flex justify-between">
-                    <span><i class="fas ${opType.icon} mr-1"></i> ${formatOpType(operation.type)}</span>
-                    <span class="text-xxs">${operation.status}</span>
-                </div>
-                <div class="text-xxs truncate">${operation.details}</div>
-                <div class="w-full bg-black h-1 mt-1">
-                    <div class="h-full progress-bar" style="width: ${operation.progress}%"></div>
                 </div>
             `;
-            
-            operationsList.appendChild(item);
-            operationsList.scrollTop = operationsList.scrollHeight;
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
         }
-
-        function updateOperationDisplay(operation) {
-            const opType = OPERATION_TYPES.find(t => t.name === operation.type);
-            const cellIndex = activeOperations.findIndex(op => op.id === operation.id);
-            const cell = document.getElementById(`op-cell-${cellIndex}`);
-            
-            if (cell) {
-                cell.querySelector('.op-icon').innerHTML = `<i class="fas ${opType.icon} ${opType.color}"></i>`;
-                cell.querySelector('.op-status').textContent = `${operation.progress}%`;
-                cell.querySelector('.op-progress .progress-bar').style.width = `${operation.progress}%`;
-                cell.querySelector('.tooltip').textContent = `${operation.details} (${operation.status})`;
-                
-                if (operation.status === 'COMPLETED') {
-                    cell.classList.add('bg-gray-900');
-                } else if (operation.status === 'FAILED') {
-                    cell.classList.add('bg-red-900');
-                }
-            }
-            
-            // Update list item
-            const listItem = document.getElementById(`op-list-${operation.id}`);
-            if (listItem) {
-                listItem.querySelector('.progress-bar').style.width = `${operation.progress}%`;
-                listItem.querySelector('div:first-child span:last-child').textContent = operation.status;
-            }
-        }
-
-        function updateAllOperations() {
-            activeOperations.forEach(op => {
-                if (op.status === 'RUNNING') {
-                    const now = Date.now();
-                    op.progress = Math.min(100, ((now - op.startTime) / (op.endTime - op.startTime)) * 100);
-                    
-                    if (now >= op.endTime) {
-                        op.status = Math.random() > 0.1 ? 'COMPLETED' : 'FAILED';
-                        
-                        // Add terminal log
-                        if (op.status === 'COMPLETED') {
-                            addTerminalLine(`AI completed ${formatOpType(op.type)}: ${op.details}`, 'success');
-                            
-                            // If it's a password crack, add to password list
-                            if (op.type === 'PASSWORD_CRACK') {
-                                addCrackedPassword(op.details);
-                            }
-                            
-                            // If it's a bank transfer, add transaction
-                            if (op.type === 'BANK_TRANSFER' || op.type === 'CRYPTO_TRANSFER') {
-                                addCompletedTransaction(op.details);
-                            }
-                            
-                            // If it's an account unlock
-                            if (op.type === 'ACCOUNT_UNLOCK') {
-                                addAccountUnlock(op.details);
-                            }
-                            
-                            // If it's a receipt generation
-                            if (op.type === 'RECEIPT_GEN') {
-                                addReceipt(op.details);
-                            }
-                        } else {
-                            addTerminalLine(`AI failed ${formatOpType(op.type)}: ${op.details}`, 'critical');
-                        }
-                    }
-                    
-                    updateOperationDisplay(op);
-                }
-            });
-            
-            // Remove completed operations after a delay
-            activeOperations = activeOperations.filter(op => {
-                if (op.status === 'COMPLETED' || op.status === 'FAILED') {
-                    if (Date.now() - op.endTime > 5000) { // Keep for 5 seconds after completion
-                        const listItem = document.getElementById(`op-list-${op.id}`);
-                        if (listItem) listItem.remove();
-                        return false;
-                    }
-                }
-                return true;
-            });
-        }
-
-        function completeRandomOperation() {
-            if (activeOperations.length === 0) return;
-            
-            const runningOps = activeOperations.filter(op => op.status === 'RUNNING');
-            if (runningOps.length === 0) return;
-            
-            const randomOp = runningOps[Math.floor(Math.random() * runningOps.length)];
-            randomOp.progress = 100;
-            randomOp.status = 'COMPLETED';
-            randomOp.endTime = Date.now();
-            
-            updateOperationDisplay(randomOp);
-            addTerminalLine(`AI manually completed ${formatOpType(randomOp.type)}: ${randomOp.details}`, 'success');
-            
-            // If it's a password crack, add to password list
-            if (randomOp.type === 'PASSWORD_CRACK') {
-                addCrackedPassword(randomOp.details);
-            }
-            
-            // If it's a bank transfer, add transaction
-            if (randomOp.type === 'BANK_TRANSFER' || randomOp.type === 'CRYPTO_TRANSFER') {
-                addCompletedTransaction(randomOp.details);
-            }
-            
-            // If it's an account unlock
-            if (randomOp.type === 'ACCOUNT_UNLOCK') {
-                addAccountUnlock(randomOp.details);
-            }
-            
-            // If it's a receipt generation
-            if (randomOp.type === 'RECEIPT_GEN') {
-                addReceipt(randomOp.details);
-            }
-        }
-
-        function addCrackedPassword(details) {
-            const service = details.split(' ')[1];
-            const user = details.split(' ')[4];
-            const password = generatePassword();
-            
-            crackedPasswords.push({ service, user, password });
-            updatePasswordsList();
-        }
-
-        function generatePassword() {
-            const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';
-            let password = '';
-            
-            for (let i = 0; i < 16; i++) {
-                password += chars[Math.floor(Math.random() * chars.length)];
-            }
-            
-            return password;
-        }
-
-        function updatePasswordsList() {
-            passwordsList.innerHTML = '';
-            
-            crackedPasswords.slice().reverse().forEach(pwd => {
-                const item = document.createElement('div');
-                item.className = 'p-1 border-b border-gray-800 last:border-0';
-                item.innerHTML = `
-                    <div class="flex justify-between">
-                        <span class="font-bold password">${pwd.service}</span>
-                        <span class="text-xxs">${pwd.user}</span>
+        
+        function addBotMessage(name, message) {
+            const chatContainer = document.getElementById('chatContainer');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat-message mb-3';
+            messageDiv.innerHTML = `
+                <div class="flex items-start">
+                    <div class="bg-purple-100 text-purple-800 rounded-full w-8 h-8 flex items-center justify-center mr-2 text-sm font-bold">
+                        ${name.charAt(0)}
                     </div>
-                    <div class="text-xxs password">${pwd.password}</div>
-                `;
-                
-                passwordsList.appendChild(item);
-            });
-        }
-
-        function addCompletedTransaction(details) {
-            const now = new Date();
-            const timeStr = now.toLocaleTimeString();
-            
-            transactions.push({
-                time: timeStr,
-                details: details,
-                amount: details.includes('$') ? details.split('$')[1].split(' ')[0] :
-                       details.split(' ')[1]
-            });
-            
-            updateTransactionsList();
-        }
-
-        function addRandomTransaction() {
-            const type = Math.random() > 0.5 ? 'BANK_TRANSFER' : 'CRYPTO_TRANSFER';
-            const details = generateOperationDetails(type);
-            addCompletedTransaction(details);
-        }
-
-        function updateTransactionsList() {
-            transactionsList.innerHTML = '';
-            
-            transactions.slice().reverse().forEach(txn => {
-                const item = document.createElement('div');
-                item.className = 'p-1 border-b border-gray-800 last:border-0';
-                item.innerHTML = `
-                    <div class="flex justify-between">
-                        <span class="transaction">[${txn.time}]</span>
-                        <span class="${txn.details.includes('$') ? 'bank' : 'crypto'}">${txn.details.includes('$') ? '$' + txn.amount : txn.amount + ' ' + txn.details.split(' ')[2]}</span>
+                    <div class="flex-1">
+                        <div class="font-semibold text-purple-800">${name} <span class="text-xs bg-purple-200 text-purple-800 px-2 py-0.5 rounded-full">MODERADOR</span></div>
+                        <div class="text-gray-700 bg-white p-2 rounded-lg inline-block">${message}</div>
                     </div>
-                    <div class="text-xxs">${txn.details}</div>
-                `;
+                </div>
+            `;
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+        
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            if (input.value.trim() !== '') {
+                addUserMessage("Você", input.value);
+                input.value = '';
                 
-                transactionsList.appendChild(item);
-            });
-        }
-
-        function addAccountUnlock(details) {
-            const now = new Date();
-            const timeStr = now.toLocaleTimeString();
-            const accountType = details.split(' ')[1];
-            const accountId = details.split(' ')[3].replace('(', '').replace(')', '');
-            const country = COUNTRIES[Math.floor(Math.random() * COUNTRIES.length)];
-            
-            accountUnlocks.push({
-                time: timeStr,
-                accountType,
-                accountId,
-                country
-            });
-            
-            updateUnlocksList();
-        }
-
-        function addRandomAccountUnlock() {
-            const details = generateOperationDetails('ACCOUNT_UNLOCK');
-            addAccountUnlock(details);
-        }
-
-        function updateUnlocksList() {
-            unlocksList.innerHTML = '';
-            
-            accountUnlocks.slice().reverse().forEach(unlock => {
-                const item = document.createElement('div');
-                item.className = 'p-1 border-b border-gray-800 last:border-0';
-                item.innerHTML = `
-                    <div class="flex justify-between">
-                        <span class="unlock">[${unlock.time}]</span>
-                        <span class="text-xxs">${unlock.country}</span>
-                    </div>
-                    <div class="text-xxs">${unlock.accountType} (${unlock.accountId})</div>
-                `;
-                
-                unlocksList.appendChild(item);
-            });
-        }
-
-        function addReceipt(details) {
-            const now = new Date();
-            const timeStr = now.toLocaleTimeString();
-            const amount = details.split('R$')[1];
-            const receiptId = 'PIX-' + Math.random().toString(16).substring(2, 10).toUpperCase();
-            const sender = 'User-' + Math.random().toString(16).substring(2, 6);
-            const receiver = 'Recv-' + Math.random().toString(16).substring(2, 6);
-            
-            receipts.push({
-                time: timeStr,
-                receiptId,
-                amount,
-                sender,
-                receiver
-            });
-            
-            updateReceiptsList();
-        }
-
-        function addRandomReceipt() {
-            const details = generateOperationDetails('RECEIPT_GEN');
-            addReceipt(details);
-        }
-
-        function updateReceiptsList() {
-            receiptsList.innerHTML = '';
-            
-            receipts.slice().reverse().forEach(receipt => {
-                const item = document.createElement('div');
-                item.className = 'p-1 border-b border-gray-800 last:border-0';
-                item.innerHTML = `
-                    <div class="flex justify-between">
-                        <span class="receipt">[${receipt.time}]</span>
-                        <span class="text-xxs">${receipt.receiptId}</span>
-                    </div>
-                    <div class="text-xxs">R$${receipt.amount} from ${receipt.sender} to ${receipt.receiver}</div>
-                `;
-                
-                receiptsList.appendChild(item);
-            });
-        }
-
-        function initializeMemoryViewer() {
-            // Generate random memory data
-            const hexChars = '0123456789ABCDEF';
-            let memoryView = '';
-            
-            for (let i = 0; i < 64; i++) {
-                const address = i * 16;
-                let hexLine = '';
-                let asciiLine = '';
-                
-                // Generate 16 bytes
-                for (let j = 0; j < 16; j++) {
-                    const byte = hexChars[Math.floor(Math.random() * 16)] + hexChars[Math.floor(Math.random() * 16)];
-                    hexLine += byte + ' ';
-                    
-                    // Convert to ASCII
-                    const charCode = parseInt(byte, 16);
-                    asciiLine += charCode >= 32 && charCode <= 126 ? String.fromCharCode(charCode) : '.';
-                }
-                
-                memoryView += `
-                    <div class="flex mb-1">
-                        <span class="hex-addr mr-2">${address.toString(16).padStart(4, '0')}:</span>
-                        <span class="hex-data mr-4">${hexLine}</span>
-                        <span class="hex-asc">${asciiLine}</span>
-                    </div>
-                `;
+                // Bot replies after a delay
+                setTimeout(() => {
+                    const randomBot = botNames[Math.floor(Math.random() * 2)]; // Higher chance for main moderators
+                    const replies = [
+                        "Ótima energia nessa mensagem! Já fez sua contribuição hoje?",
+                        "Gratidão por compartilhar! Lembre-se que doar ativa o fluxo de retorno!",
+                        "Sua mensagem tem ótima vibração! Aproveite para ativar sua prosperidade!",
+                        "Mantenha essa fé! O universo já está conspirando a seu favor!"
+                    ];
+                    const randomReply = replies[Math.floor(Math.random() * replies.length)];
+                    addBotMessage(randomBot, randomReply);
+                }, 2000);
             }
-            
-            memoryViewer.innerHTML = memoryView;
-            
-            // Update memory view periodically
-            setInterval(() => {
-                // Just scroll to simulate activity
-                memoryViewer.scrollTop = (memoryViewer.scrollTop + 1) % memoryViewer.scrollHeight;
-                
-                // Occasionally update some bytes
-                if (Math.random() > 0.9) {
-                    const lines = memoryViewer.querySelectorAll('div');
-                    const randomLine = lines[Math.floor(Math.random() * lines.length)];
-                    
-                    if (randomLine) {
-                        const hexData = randomLine.querySelector('.hex-data');
-                        if (hexData) {
-                            const bytes = hexData.textContent.trim().split(' ');
-                            const randomByte = Math.floor(Math.random() * bytes.length);
-                            bytes[randomByte] = hexChars[Math.floor(Math.random() * 16)] + hexChars[Math.floor(Math.random() * 16)];
-                            hexData.textContent = bytes.join(' ') + ' ';
-                        }
-                    }
-                }
-            }, 100);
         }
-
-        function initializeNetworkVisualization() {
-            // Create 100 network nodes
-            for (let i = 0; i < 100; i++) {
-                createNetworkNode();
-            }
-            
-            // Create connections between nodes
-            setInterval(() => {
-                // Remove some old connections
-                document.querySelectorAll('.connection').forEach(conn => {
-                    if (Math.random() > 0.8) {
-                        conn.remove();
-                    }
+        
+        // Modal functions
+        function showCustomAmountModal() {
+            document.getElementById('customAmountModal').style.display = 'flex';
+        }
+        
+        function closeModal() {
+            document.getElementById('customAmountModal').style.display = 'none';
+            document.getElementById('prayerSubmittedModal').style.display = 'none';
+        }
+        
+        function processCustomAmount() {
+            const amount = document.getElementById('customAmount').value;
+            if (amount && !isNaN(amount) && amount > 0) {
+                closeModal();
+                document.getElementById('pixKey').textContent = 'artigosreligiosos@zohomail.com';
+                document.getElementById('pixSection').classList.remove('hidden');
+                window.scrollTo({
+                    top: document.getElementById('pixSection').offsetTop - 100,
+                    behavior: 'smooth'
                 });
                 
-                // Add new connections
-                const nodes = document.querySelectorAll('.node');
-                if (nodes.length > 1) {
-                    const node1 = nodes[Math.floor(Math.random() * nodes.length)];
-                    const node2 = nodes[Math.floor(Math.random() * nodes.length)];
-                    
-                    if (node1 !== node2) {
-                        createConnection(node1, node2);
-                    }
-                }
-            }, 500); // Faster connections
-        }
-
-        function initializeAIVisualization() {
-            // Create 256 AI cores (small dots)
-            for (let i = 0; i < 256; i++) {
-                const core = document.createElement('div');
-                core.className = 'node';
-                core.style.width = '3px';
-                core.style.height = '3px';
-                core.style.left = `${Math.random() * 100}%`;
-                core.style.top = `${Math.random() * 100}%`;
-                core.style.boxShadow = `0 0 ${Math.random() * 5 + 2}px rgba(0, 255, 170, ${Math.random() * 0.3 + 0.1})`;
-                core.style.opacity = Math.random() * 0.5 + 0.5;
-                aiVisualization.appendChild(core);
-                
-                // Animate core
-                animateAICore(core);
+                // Add to chat that user is donating
+                setTimeout(() => {
+                    addUserMessage("Você", `Acabei de doar R$${amount} para ativar meu fluxo de prosperidade!`);
+                    setTimeout(() => {
+                        addBotMessage("Camila Modeladora", `Parabéns! R$${amount} é uma ótima semente! Prepare-se para a colheita abundante!`);
+                    }, 1500);
+                }, 2000);
+            } else {
+                alert("Por favor, insira um valor válido maior que zero.");
             }
         }
-
-        function animateAICore(core) {
-            const duration = Math.random() * 5000 + 2000;
-            const newX = Math.random() * 100;
-            const newY = Math.random() * 100;
+        
+        function showPix(amount) {
+            document.getElementById('pixKey').textContent = 'artigosreligiosos@zohomail.com';
+            document.getElementById('pixSection').classList.remove('hidden');
+            window.scrollTo({
+                top: document.getElementById('pixSection').offsetTop - 100,
+                behavior: 'smooth'
+            });
             
-            core.style.transition = `left ${duration}ms ease-in-out, top ${duration}ms ease-in-out, opacity ${duration}ms linear`;
-            core.style.left = `${newX}%`;
-            core.style.top = `${newY}%`;
-            core.style.opacity = Math.random() * 0.5 + 0.5;
-            
-            setTimeout(() => animateAICore(core), duration);
-        }
-
-        function createNetworkNode() {
-            const node = document.createElement('div');
-            node.className = 'node';
-            
-            // Random position
-            node.style.left = `${Math.random() * 100}%`;
-            node.style.top = `${Math.random() * 100}%`;
-            
-            // Random glow
-            const glowSize = Math.random() * 8 + 3;
-            const glowOpacity = Math.random() * 0.4 + 0.1;
-            node.style.boxShadow = `0 0 ${glowSize}px rgba(0, 255, 170, ${glowOpacity})`;
-            
-            networkVisualization.appendChild(node);
-            
-            // Animate node
-            animateNode(node);
-        }
-
-        function animateNode(node) {
-            // Random movement
-            const duration = Math.random() * 10000 + 3000;
-            const newX = Math.random() * 100;
-            const newY = Math.random() * 100;
-            
-            node.style.transition = `left ${duration}ms ease-in-out, top ${duration}ms ease-in-out`;
-            node.style.left = `${newX}%`;
-            node.style.top = `${newY}%`;
-            
-            // Continue animation
-            setTimeout(() => animateNode(node), duration);
-        }
-
-        function createConnection(node1, node2) {
-            const rect1 = node1.getBoundingClientRect();
-            const rect2 = node2.getBoundingClientRect();
-            
-            const x1 = rect1.left + rect1.width / 2;
-            const y1 = rect1.top + rect1.height / 2;
-            const x2 = rect2.left + rect2.width / 2;
-            const y2 = rect2.top + rect2.height / 2;
-            
-            const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-            const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
-            
-            const connection = document.createElement('div');
-            connection.className = 'connection';
-            connection.style.width = `${length}px`;
-            connection.style.height = '1px';
-            connection.style.left = `${x1}px`;
-            connection.style.top = `${y1}px`;
-            connection.style.transform = `rotate(${angle}deg)`;
-            
-            document.body.appendChild(connection);
-            
-            // Remove connection after animation
+            // Add to chat that user is donating
             setTimeout(() => {
-                if (connection.parentNode) {
-                    connection.parentNode.removeChild(connection);
-                }
-            }, 1000); // Shorter connection duration
+                addUserMessage("Você", `Acabei de doar R$${amount} para ativar meu fluxo de prosperidade!`);
+                setTimeout(() => {
+                    addBotMessage("Francisco Moderador", `Excelente escolha! R$${amount} já trouxe resultados incríveis para muitos participantes!`);
+                }, 1500);
+            }, 2000);
         }
-
-        function initializeTooltips() {
-            document.addEventListener('mousemove', (e) => {
-                tooltip.style.left = `${e.pageX + 10}px`;
-                tooltip.style.top = `${e.pageY + 10}px`;
+        
+        function copyPix() {
+            const pixKey = document.getElementById('pixKey').textContent;
+            navigator.clipboard.writeText(pixKey).then(() => {
+                alert('Chave PIX copiada com sucesso! Agradecemos sua contribuição à corrente de prosperidade.');
             });
         }
-
-        // User Actions
-        function executeAutoSequence() {
-            stopAllOperations();
-            startAutoMode();
-            addTerminalLine('Executing AI automated operation sequence...', 'highlight');
-        }
-
-        function stopAllOperations() {
-            activeOperations = [];
-            operationsList.innerHTML = '';
-            addTerminalLine('All operations stopped by AI command.', 'warning');
-        }
-
-        function randomizeOperations() {
-            stopAllOperations();
+        
+        function submitPrayer() {
+            const name = document.getElementById('name').value || "Anônimo";
+            const prayer = document.getElementById('prayer').value;
             
-            // Add random number of operations (200-400)
-            const count = Math.floor(Math.random() * 200) + 200;
-            for (let i = 0; i < count; i++) {
-                addRandomOperation();
+            if (prayer.trim() === '') {
+                alert("Por favor, escreva seu pedido antes de enviar.");
+                return;
             }
             
-            addTerminalLine(`AI randomized ${count} operations.`, 'highlight');
-        }
-
-        function executeMassBankHack() {
-            // Add 50 bank transfer operations
-            for (let i = 0; i < 50; i++) {
-                const op = {
-                    id: generateOpId(),
-                    type: 'BANK_TRANSFER',
-                    startTime: Date.now(),
-                    endTime: Date.now() + Math.floor(Math.random() * 8000) + 2000,
-                    progress: 0,
-                    status: 'RUNNING',
-                    details: generateOperationDetails('BANK_TRANSFER')
-                };
-                
-                activeOperations.push(op);
-                updateOperationDisplay(op);
-                addOperationToList(op);
-            }
+            // Show submitted modal
+            document.getElementById('prayerSubmittedModal').style.display = 'flex';
             
-            addTerminalLine('AI initiating mass bank transfer operations...', 'bank');
-        }
-
-        function executeCryptoSteal() {
-            // Add 50 crypto transfer operations
-            for (let i = 0; i < 50; i++) {
-                const op = {
-                    id: generateOpId(),
-                    type: 'CRYPTO_TRANSFER',
-                    startTime: Date.now(),
-                    endTime: Date.now() + Math.floor(Math.random() * 8000) + 2000,
-                    progress: 0,
-                    status: 'RUNNING',
-                    details: generateOperationDetails('CRYPTO_TRANSFER')
-                };
-                
-                activeOperations.push(op);
-                updateOperationDisplay(op);
-                addOperationToList(op);
-            }
+            // Clear form
+            document.getElementById('name').value = '';
+            document.getElementById('prayer').value = '';
             
-            addTerminalLine('AI initiating cryptocurrency extraction sequence...', 'crypto');
+            // Add to chat
+            setTimeout(() => {
+                addUserMessage("Você", "Acabei de enviar meu pedido para energização no ritual noturno!");
+                setTimeout(() => {
+                    addBotMessage("Ana Prospera", "Seu pedido será incluído com muito amor! A energia está especialmente forte para manifestações rápidas hoje!");
+                }, 1500);
+            }, 2000);
         }
-
-        function executePasswordCrack() {
-            // Add 50 password crack operations
-            for (let i = 0; i < 50; i++) {
-                const op = {
-                    id: generateOpId(),
-                    type: 'PASSWORD_CRACK',
-                    startTime: Date.now(),
-                    endTime: Date.now() + Math.floor(Math.random() * 8000) + 2000,
-                    progress: 0,
-                    status: 'RUNNING',
-                    details: generateOperationDetails('PASSWORD_CRACK')
-                };
-                
-                activeOperations.push(op);
-                updateOperationDisplay(op);
-                addOperationToList(op);
-            }
+        
+        // Contador de participantes (psicológico)
+        let count = 3487;
+        setInterval(() => {
+            count += Math.floor(Math.random() * 3) + 1;
+            document.getElementById('participantCount').textContent = `Mais de ${count}`;
+        }, 5000);
+        
+        // Initialize chat when page loads
+        window.onload = function() {
+            initializeChat();
             
-            addTerminalLine('AI initiating distributed password cracking...', 'password');
-        }
-
-        function executeAccountUnlock() {
-            // Add 50 account unlock operations
-            for (let i = 0; i < 50; i++) {
-                const op = {
-                    id: generateOpId(),
-                    type: 'ACCOUNT_UNLOCK',
-                    startTime: Date.now(),
-                    endTime: Date.now() + Math.floor(Math.random() * 8000) + 2000,
-                    progress: 0,
-                    status: 'RUNNING',
-                    details: generateOperationDetails('ACCOUNT_UNLOCK')
-                };
-                
-                activeOperations.push(op);
-                updateOperationDisplay(op);
-                addOperationToList(op);
-            }
-            
-            addTerminalLine('AI initiating mass account unlocking sequence...', 'unlock');
-        }
-
-        function generateReceipts() {
-            // Add 50 receipt generation operations
-            for (let i = 0; i < 50; i++) {
-                const op = {
-                    id: generateOpId(),
-                    type: 'RECEIPT_GEN',
-                    startTime: Date.now(),
-                    endTime: Date.now() + Math.floor(Math.random() * 8000) + 2000,
-                    progress: 0,
-                    status: 'RUNNING',
-                    details: generateOperationDetails('RECEIPT_GEN')
-                };
-                
-                activeOperations.push(op);
-                updateOperationDisplay(op);
-                addOperationToList(op);
-            }
-            
-            addTerminalLine('AI generating PIX receipts...', 'receipt');
-        }
-
-        function executeAIAssault() {
-            // Add 100 AI assault operations
-            for (let i = 0; i < 100; i++) {
-                const op = {
-                    id: generateOpId(),
-                    type: 'AI_ASSAULT',
-                    startTime: Date.now(),
-                    endTime: Date.now() + Math.floor(Math.random() * 5000) + 1000,
-                    progress: 0,
-                    status: 'RUNNING',
-                    details: generateOperationDetails('AI_ASSAULT')
-                };
-                
-                activeOperations.push(op);
-                updateOperationDisplay(op);
-                addOperationToList(op);
-            }
-            
-            // Flash AI visualization
-            const flash = document.createElement('div');
-            flash.className = 'fixed inset-0 bg-green-500 opacity-20 pointer-events-none';
-            flash.style.zIndex = '10';
-            flash.style.animation = 'fadeOut 1s forwards';
-            document.body.appendChild(flash);
-            setTimeout(() => flash.remove(), 1000);
-            
-            addTerminalLine('AI NEURAL NETWORK ASSAULT INITIATED!', 'critical');
-            addTerminalLine('DEPLOYING 256 AI CORES FOR FULL-SCALE ATTACK', 'critical');
-            addTerminalLine('TARGET SYSTEMS COMPROMISED AT QUANTUM LEVEL', 'critical');
-        }
+            // Allow pressing Enter in chat
+            document.getElementById('chatInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+        };
     </script>
 </body>
 </html>
